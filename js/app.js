@@ -74,10 +74,15 @@ function addItem(nome, preco) {
 
   atualizarCarrinho();
 
-  // Feedback visual: pisca o botão do carrinho em amarelo claro
+  // Feedback visual: pisca o botão e inicia pulso de atenção
   const btn = document.getElementById('carrinhoBtn');
   btn.style.background = '#fff176';
-  setTimeout(() => btn.style.background = 'var(--cor-destaque)', 300);
+  setTimeout(() => btn.style.background = 'var(--amarelo)', 300);
+
+  // Pulso de atenção por 4 segundos
+  btn.classList.add('pulsar');
+  clearTimeout(btn._pulsarTimer);
+  btn._pulsarTimer = setTimeout(() => btn.classList.remove('pulsar'), 4000);
 }
 
 /**

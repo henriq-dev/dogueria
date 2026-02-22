@@ -392,35 +392,68 @@ main {
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
+
+  /* Cor sólida, sem transparência nenhuma */
   background: var(--amarelo);
   color: var(--azul-escuro);
+  opacity: 1 !important;
+
   border: none;
+  border-bottom: 4px solid #c9a800; /* sombra inferior dá profundidade */
   border-radius: 50px;
-  padding: 14px 28px;
+  padding: 15px 32px;
+
   font-family: var(--fonte-titulo);
-  font-size: 18px;
-  letter-spacing: 1.5px;
+  font-size: 20px;
+  letter-spacing: 2px;
+
   cursor: pointer;
   display: none; /* JS controla visibilidade */
   align-items: center;
-  gap: 10px;
-  box-shadow: var(--sombra-float);
+  gap: 12px;
+
+  /* Sombra colorida amarela — destaca do fundo azul */
+  box-shadow: 0 6px 24px rgba(245,216,0,.55), 0 2px 8px rgba(0,0,0,.3);
+
   z-index: 200;
   white-space: nowrap;
-  transition: transform .2s, box-shadow .2s;
-  animation: slideUp .3s ease;
+  transition: transform .2s, box-shadow .2s, background .2s;
+
+  /* Animação de entrada */
+  animation: slideUp .35s cubic-bezier(.34,1.56,.64,1);
 }
 
+/* Entrada suave vindo de baixo */
 @keyframes slideUp {
-  from { transform: translateX(-50%) translateY(40px); opacity: 0; }
+  from { transform: translateX(-50%) translateY(60px); opacity: 0; }
   to   { transform: translateX(-50%) translateY(0);    opacity: 1; }
 }
 
+/* Pulso de atenção — chama o olho do cliente */
+@keyframes pulsarBtn {
+  0%, 100% { box-shadow: 0 6px 24px rgba(245,216,0,.55), 0 2px 8px rgba(0,0,0,.3); }
+  50%       { box-shadow: 0 6px 36px rgba(245,216,0,.9), 0 2px 16px rgba(0,0,0,.4); transform: translateX(-50%) scale(1.03); }
+}
+
+/* Aplica o pulso depois de 2s e repete a cada 3s */
+.carrinho-btn.pulsar {
+  animation: pulsarBtn 1.2s ease-in-out infinite;
+}
+
+/* Hover — sem transparência, só escala e sombra maior */
 .carrinho-btn:hover {
-  transform: translateX(-50%) scale(1.05);
-  box-shadow: 0 8px 30px rgba(0,0,0,.4);
   background: var(--amarelo);
-  opacity: 1;
+  opacity: 1 !important;
+  transform: translateX(-50%) scale(1.07);
+  box-shadow: 0 10px 36px rgba(245,216,0,.7), 0 4px 16px rgba(0,0,0,.4);
+  border-bottom-color: #a88900;
+}
+
+/* Active — aperta visualmente ao clicar */
+.carrinho-btn:active {
+  transform: translateX(-50%) scale(0.97);
+  border-bottom-width: 2px;
+  box-shadow: 0 3px 12px rgba(245,216,0,.4);
 }
 
 .carrinho-badge {
