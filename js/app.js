@@ -195,7 +195,7 @@ function abrirCarrinho() {
   document.getElementById('overlay').classList.add('open');
   document.getElementById('modalCarrinho').classList.add('open');
   document.body.style.overflow = 'hidden';
-  document.getElementById('carrinhoBtn').style.display = 'none';
+  document.getElementById('carrinhoBtn').style.display = 'none'; // Esconde botão flutuante
 }
 
 /**
@@ -205,7 +205,7 @@ function fecharCarrinho() {
   document.getElementById('overlay').classList.remove('open');
   document.getElementById('modalCarrinho').classList.remove('open');
   document.body.style.overflow = '';
-  atualizarCarrinho();
+  atualizarCarrinho(); // Restaura botão flutuante se houver itens
 }
 
 
@@ -220,6 +220,22 @@ function fecharCarrinho() {
  */
 function enviarWhatsApp() {
   if (carrinho.length === 0) return;
+
+  // Valida endereço se for entrega
+  if (tipoPedido === 'entrega') {
+    const rua    = document.getElementById('inputRua')?.value?.trim() || '';
+    const bairro = document.getElementById('inputBairro')?.value?.trim() || '';
+    if (!rua && !bairro) {
+      alert('Por favor, preencha pelo menos a rua/avenida e o bairro para entrega.');
+      return;
+    }
+  }
+
+  // Valida pagamento
+  if (!pagamentoSelecionado) {
+    alert('Por favor, selecione uma forma de pagamento.');
+    return;
+  }
 
   let mensagem = `*${LOJA.nome} - Novo Pedido*\n\n`;
   let total    = 0;
@@ -237,9 +253,22 @@ function enviarWhatsApp() {
   const tipos = { entrega: 'Entrega', retirada: 'Retirada no local', local: 'Comer no local' };
   mensagem += `\n\nTipo: ${tipos[tipoPedido] || 'Entrega'}`;
 
+  // Endereço completo
   if (tipoPedido === 'entrega') {
-    const bairro = document.getElementById('inputBairro')?.value?.trim();
-    mensagem += bairro ? `\nBairro: ${bairro}` : '\nBairro: (nao informado)';
+    const rua    = document.getElementById('inputRua')?.value?.trim() || '';
+    const bairro = document.getElementById('inputBairro')?.value?.trim() || '';
+    const cep    = document.getElementById('inputCep')?.value?.trim() || '';
+    const partes = [rua, bairro, cep ? 'CEP ' + cep : ''].filter(Boolean);
+    mensagem += `\nEndereço: ${partes.join(', ') || '(não informado)'}`;
+  }
+
+  // Forma de pagamento
+  const labelsPag = { pix: 'Pix', dinheiro: 'Dinheiro', debito: 'Cartão Débito', credito: 'Cartão Crédito' };
+  mensagem += `\n\n💳 Pagamento: ${labelsPag[pagamentoSelecionado] || pagamentoSelecionado}`;
+
+  if (pagamentoSelecionado === 'dinheiro') {
+    const troco = document.getElementById('inputTroco')?.value;
+    if (troco) mensagem += ` (troco para R$ ${parseFloat(troco).toFixed(2).replace('.', ',')})`;
   }
 
   // Codifica a mensagem para URL e abre o WhatsApp
@@ -372,12 +401,30 @@ document.addEventListener('DOMContentLoaded', () => {
 // Tipo de pedido selecionado (padrão: entrega)
 let tipoPedido = 'entrega';
 
-/* Seleciona o tipo de pedido e mostra/esconde o campo de bairro */
+// Forma de pagamento selecionada
+let pagamentoSelecionado = '';
+
+/* Seleciona o tipo de pedido e mostra/esconde o campo de endereço */
 function selecionarTipo(tipo, btn) {
   tipoPedido = tipo;
   document.querySelectorAll('.tipo-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById('campoBairro').style.display = tipo === 'entrega' ? 'block' : 'none';
+}
+
+/* Seleciona forma de pagamento e mostra campo de troco se dinheiro */
+function selecionarPagamento(tipo, btn) {
+  pagamentoSelecionado = tipo;
+  document.querySelectorAll('.pagamento-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const campoTroco = document.getElementById('campoTroco');
+  if (campoTroco) {
+    campoTroco.style.display = tipo === 'dinheiro' ? 'block' : 'none';
+    if (tipo !== 'dinheiro') {
+      const inputTroco = document.getElementById('inputTroco');
+      if (inputTroco) inputTroco.value = '';
+    }
+  }
 }
 
 /* --- Modal Sobre a Loja --- */
