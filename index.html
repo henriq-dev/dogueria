@@ -810,6 +810,26 @@
       if (typeof _originalEnviar === 'function') _originalEnviar();
     };
 
+    // Esconde botão flutuante quando o carrinho estiver aberto
+    var _originalAbrirCarrinho = window.abrirCarrinho;
+    var _originalFecharCarrinho = window.fecharCarrinho;
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+        var _abrirOrig = window.abrirCarrinho;
+        window.abrirCarrinho = function() {
+          if (typeof _abrirOrig === 'function') _abrirOrig();
+          var btn = document.getElementById('carrinhoBtn');
+          if (btn) btn.style.display = 'none';
+        };
+        var _fecharOrig = window.fecharCarrinho;
+        window.fecharCarrinho = function() {
+          if (typeof _fecharOrig === 'function') _fecharOrig();
+          var btn = document.getElementById('carrinhoBtn');
+          if (btn) btn.style.display = '';
+        };
+      }, 500);
+    });
+
     // Intercepta window.open para injetar forma de pagamento na mensagem do WhatsApp
     var _originalOpen = window.open;
     window.open = function(url, target, features) {
