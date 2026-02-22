@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cardápio digital do Tubarão Dogueria. Faça seu pedido online!">
+  <meta name="theme-color" content="#0d2d7a">
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="Tubarão Dogueria – Cardápio">
+  <meta property="og:description" content="Prepare-se para o ataque! Os melhores dogs da cidade.">
+  <meta property="og:image"       content="img/logo.jpeg">
+  <meta property="og:type"        content="website">
+
+  <title>Tubarão Dogueria – Cardápio</title>
+
+  <!-- Fontes: Bebas Neue (títulos) | Barlow Condensed (labels) | Barlow (corpo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===================== HEADER ===================== -->
+  <header>
+
+    <div class="header-top">
+      <div class="logo-area">
+        <div class="logo-titulo">TUBARÃO</div>
+        <div class="logo-subtitulo">DOGUERIA</div>
+        <div class="logo-slogan">⚡ Prepare-se para o ataque!</div>
+      </div>
+      <img class="logo-img" src="img/logo.jpeg" alt="Logo Tubarão Dogueria">
+    </div>
+
+    <div class="header-info">
+      <!-- Status: atualizado automaticamente pelo JS (verificarStatus) -->
+      <span id="statusBadge" class="status-badge fechado">
+        <span class="status-dot"></span>FECHADO
+      </span>
+      <span class="info-chip"><span class="icon">🕐</span> Seg–Sáb: 18h às 23h</span>
+      <span class="info-chip"><span class="icon">📍</span> R. dos Andrades, 10049 – B. Mariana</span>
+      <span class="info-chip"><span class="icon">📞</span> (69) 99300-9408</span>
+    </div>
+
+  </header>
+  <!-- ================================================== -->
+
+
+  <!-- ==================== NAV CATEGORIAS ==================== -->
+  <nav class="nav-cats" aria-label="Categorias do cardápio">
+    <div class="nav-cats-inner">
+      <button class="cat-btn active" onclick="scrollToSection('dogs', this)">🌭 Dogs</button>
+      <button class="cat-btn"        onclick="scrollToSection('bebidas', this)">🥤 Bebidas</button>
+      <button class="cat-btn"        onclick="scrollToSection('sucos', this)">🍹 Sucos</button>
+      <button class="cat-btn"        onclick="scrollToSection('adicionais', this)">➕ Adicionais</button>
+      <button class="cat-btn"        onclick="abrirSobreLoja()">ℹ️ Sobre</button>
+    </div>
+    <!-- Botão que abre o menu lateral de produtos -->
+    <button class="btn-menu-lateral" onclick="abrirMenuLateral()" aria-label="Menu de produtos">☰</button>
+  </nav>
+  <!-- ======================================================== -->
+
+
+  <!-- ======================= MAIN ========================= -->
+  <main>
+
+    <!-- -------- DOGS -------- -->
+    <section class="secao" id="dogs">
+      <div class="secao-titulo">🌭 HOT DOGS</div>
+
+      <div class="produto-card" id="produtoid-dogs-0" onclick="addItem('Tubarão Tradicional', 6.00)">
+        <div class="produto-info">
+          <div class="produto-nome">Tubarão Tradicional</div>
+          <div class="produto-desc">Salsicha, molho, queijo mussarela, milho e batata palha</div>
+        </div>
+        <div class="produto-preco">R$ 6,00</div>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Tubarão Tradicional', 6.00)">+</button>
+      </div>
+
+      <div class="produto-card" id="produtoid-dogs-1" onclick="addItem('Tubarão Duplo', 8.00)">
+        <div class="produto-info">
+          <div class="produto-nome">Tubarão Duplo</div>
+          <div class="produto-desc">2 salsichas, molho, queijo mussarela, milho e batata palha</div>
+        </div>
+        <div class="produto-preco">R$ 8,00</div>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Tubarão Duplo', 8.00)">+</button>
+      </div>
+
+      <div class="produto-card" id="produtoid-dogs-2" onclick="addItem('Tubarão Calabresa', 12.00)">
+        <div class="produto-info">
+          <div class="produto-nome">Tubarão Calabresa</div>
+          <div class="produto-desc">Salsicha, molho, queijo mussarela, milho, calabresa e batata palha</div>
+        </div>
+        <div class="produto-preco">R$ 12,00</div>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Tubarão Calabresa', 12.00)">+</button>
+      </div>
+
+      <div class="produto-card" id="produtoid-dogs-3" onclick="addItem('Tubarão Calabresa e Banana', 14.00)">
+        <div class="produto-info">
+          <div class="produto-nome">Tubarão Calabresa e Banana</div>
+          <div class="produto-desc">Salsicha, molho, queijo mussarela, milho, calabresa, banana e batata palha</div>
+        </div>
+        <div class="produto-preco">R$ 14,00</div>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Tubarão Calabresa e Banana', 14.00)">+</button>
+      </div>
+
+      <div class="produto-card" id="produtoid-dogs-4" onclick="addItem('Tubarão Bacon', 12.00)">
+        <div class="produto-info">
+          <div class="produto-nome">Tubarão Bacon</div>
+          <div class="produto-desc">Salsicha, molho, queijo mussarela, milho, bacon e batata palha</div>
+        </div>
+        <div class="produto-preco">R$ 12,00</div>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Tubarão Bacon', 12.00)">+</button>
+      </div>
+
+      <div class="produto-card" id="produtoid-dogs-5" onclick="addItem('Tubarão Bacon e Banana', 14.00)">
+        <div class="produto-info">
+          <div class="produto-nome">Tubarão Bacon e Banana</div>
+          <div class="produto-desc">Salsicha, molho, queijo mussarela, milho, bacon, banana e batata palha</div>
+        </div>
+        <div class="produto-preco">R$ 14,00</div>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Tubarão Bacon e Banana', 14.00)">+</button>
+      </div>
+
+      <div class="produto-card" id="produtoid-dogs-6" onclick="addItem('Tubarão Calabresa, Bacon e Banana', 15.00)">
+        <div class="produto-info">
+          <div class="produto-nome">Tubarão Calabresa, Bacon e Banana</div>
+          <div class="produto-desc">Salsicha, molho, queijo mussarela, milho, calabresa, bacon, banana e batata palha</div>
+        </div>
+        <div class="produto-preco">R$ 15,00</div>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Tubarão Calabresa, Bacon e Banana', 15.00)">+</button>
+      </div>
+
+      <div class="produto-card" id="produtoid-dogs-7" onclick="addItem('Tubarão Carne Desfiada', 12.00)">
+        <div class="produto-info">
+          <div class="produto-nome">Tubarão Carne Desfiada</div>
+          <div class="produto-desc">Salsicha, molho, queijo mussarela, milho, carne desfiada e batata palha</div>
+        </div>
+        <div class="produto-preco">R$ 12,00</div>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Tubarão Carne Desfiada', 12.00)">+</button>
+      </div>
+
+      <div class="produto-card" id="produtoid-dogs-8" onclick="addItem('Tubarão Carne Desfiada e Banana', 14.00)">
+        <div class="produto-info">
+          <div class="produto-nome">Tubarão Carne Desfiada e Banana</div>
+          <div class="produto-desc">Salsicha, molho, queijo mussarela, milho, carne desfiada, banana e batata palha</div>
+        </div>
+        <div class="produto-preco">R$ 14,00</div>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Tubarão Carne Desfiada e Banana', 14.00)">+</button>
+      </div>
+
+      <div class="produto-card" id="produtoid-dogs-9" onclick="addItem('Tubarão Carne Desfiada, Calabresa e Bacon', 15.00)">
+        <div class="produto-info">
+          <div class="produto-nome">Tubarão Carne Desfiada, Calabresa e Bacon</div>
+          <div class="produto-desc">Salsicha, molho, queijo mussarela, milho, carne desfiada, calabresa, bacon e batata palha</div>
+        </div>
+        <div class="produto-preco">R$ 15,00</div>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Tubarão Carne Desfiada, Calabresa e Bacon', 15.00)">+</button>
+      </div>
+
+      <!-- Dogs premium — pão 20cm -->
+      <div class="produto-card" id="produtoid-dogs-10" onclick="addItem('Tubarão Blaster', 18.00)">
+        <div class="produto-info">
+          <div class="produto-nome">⚡ Tubarão Blaster</div>
+          <div class="produto-desc">Pão 20cm, 1½ salsicha, molho, mussarela, milho, bacon, calabresa, catupiry, banana e batata palha</div>
+        </div>
+        <div class="produto-preco destaque">R$ 18,00</div>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Tubarão Blaster', 18.00)">+</button>
+      </div>
+
+      <div class="produto-card" id="produtoid-dogs-11" onclick="addItem('Tubarão Branco', 20.00)">
+        <div class="produto-info">
+          <div class="produto-nome">⚡ Tubarão Branco</div>
+          <div class="produto-desc">Pão 20cm, 1½ salsicha, molho, mussarela, milho, bacon, calabresa, catupiry, banana, peito de frango e batata palha</div>
+        </div>
+        <div class="produto-preco destaque">R$ 20,00</div>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Tubarão Branco', 20.00)">+</button>
+      </div>
+
+      <div class="produto-card" id="produtoid-dogs-12" onclick="addItem('Tubarão Megalodon', 20.00)">
+        <div class="produto-info">
+          <div class="produto-nome">🦈 Tubarão Megalodon</div>
+          <div class="produto-desc">Pão 20cm, 1½ salsicha, molho, mussarela, milho, bacon, calabresa, catupiry, banana, carne desfiada e batata palha</div>
+        </div>
+        <div class="produto-preco destaque">R$ 20,00</div>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Tubarão Megalodon', 20.00)">+</button>
+      </div>
+
+    </section>
+    <!-- -------- /DOGS -------- -->
+
+
+    <!-- -------- BEBIDAS -------- -->
+    <section class="secao" id="bebidas">
+      <div class="secao-titulo">🥤 BEBIDAS</div>
+
+      <div class="bebidas-grid">
+
+        <div class="produto-card" onclick="addItem('Coca-Cola 2L', 12.00)">
+          <div class="produto-nome">Coca-Cola 2L</div>
+          <div class="produto-preco">R$ 12,00</div>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Coca-Cola 2L', 12.00)">+</button>
+        </div>
+
+        <div class="produto-card" onclick="addItem('Fanta Laranja 2L', 12.00)">
+          <div class="produto-nome">Fanta Laranja 2L</div>
+          <div class="produto-preco">R$ 12,00</div>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Fanta Laranja 2L', 12.00)">+</button>
+        </div>
+
+        <div class="produto-card" onclick="addItem('Dydyo 2L', 8.00)">
+          <div class="produto-nome">Dydyo 2L</div>
+          <div class="produto-preco">R$ 8,00</div>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Dydyo 2L', 8.00)">+</button>
+        </div>
+
+        <div class="produto-card" onclick="addItem('Coca-Cola LS 1L Vidro', 8.00)">
+          <div class="produto-nome">Coca-Cola LS 1L</div>
+          <div class="produto-desc">Vidro</div>
+          <div class="produto-preco">R$ 8,00</div>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Coca-Cola LS 1L Vidro', 8.00)">+</button>
+        </div>
+
+        <div class="produto-card" onclick="addItem('Fanta Laranja LS 1L Vidro', 8.00)">
+          <div class="produto-nome">Fanta Laranja LS 1L</div>
+          <div class="produto-desc">Vidro</div>
+          <div class="produto-preco">R$ 8,00</div>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Fanta Laranja LS 1L Vidro', 8.00)">+</button>
+        </div>
+
+        <div class="produto-card" onclick="addItem('Coca-Cola PET 1L', 8.00)">
+          <div class="produto-nome">Coca-Cola PET 1L</div>
+          <div class="produto-preco">R$ 8,00</div>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Coca-Cola PET 1L', 8.00)">+</button>
+        </div>
+
+        <div class="produto-card" onclick="addItem('Fanta Laranja PET 1L', 8.00)">
+          <div class="produto-nome">Fanta Laranja PET 1L</div>
+          <div class="produto-preco">R$ 8,00</div>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Fanta Laranja PET 1L', 8.00)">+</button>
+        </div>
+
+        <div class="produto-card" onclick="addItem('H2O 400ml', 4.00)">
+          <div class="produto-nome">H₂O 400ml</div>
+          <div class="produto-preco">R$ 4,00</div>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('H2O 400ml', 4.00)">+</button>
+        </div>
+
+        <div class="produto-card" onclick="addItem('Água Mineral S/Gás', 3.00)">
+          <div class="produto-nome">Água Mineral S/Gás</div>
+          <div class="produto-preco">R$ 3,00</div>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Água Mineral S/Gás', 3.00)">+</button>
+        </div>
+
+        <div class="produto-card" onclick="addItem('Água Mineral C/Gás', 3.50)">
+          <div class="produto-nome">Água Mineral C/Gás</div>
+          <div class="produto-preco">R$ 3,50</div>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Água Mineral C/Gás', 3.50)">+</button>
+        </div>
+
+        <div class="produto-card" onclick="addItem('Fanta Uva Lata 350ml', 5.00)">
+          <div class="produto-nome">Fanta Uva Lata</div>
+          <div class="produto-preco">R$ 5,00</div>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Fanta Uva Lata 350ml', 5.00)">+</button>
+        </div>
+
+        <div class="produto-card" onclick="addItem('Sprite Lata 350ml', 5.00)">
+          <div class="produto-nome">Sprite Lata</div>
+          <div class="produto-preco">R$ 5,00</div>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Sprite Lata 350ml', 5.00)">+</button>
+        </div>
+
+        <div class="produto-card" onclick="addItem('Coca-Cola Lata 350ml', 5.00)">
+          <div class="produto-nome">Coca-Cola Lata</div>
+          <div class="produto-preco">R$ 5,00</div>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Coca-Cola Lata 350ml', 5.00)">+</button>
+        </div>
+
+        <div class="produto-card" onclick="addItem('Fanta Laranja Lata 350ml', 5.00)">
+          <div class="produto-nome">Fanta Laranja Lata</div>
+          <div class="produto-preco">R$ 5,00</div>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Fanta Laranja Lata 350ml', 5.00)">+</button>
+        </div>
+
+        <div class="produto-card" onclick="addItem('Coca-Cola Zero Lata 350ml', 5.00)">
+          <div class="produto-nome">Coca Zero Lata</div>
+          <div class="produto-preco">R$ 5,00</div>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Coca-Cola Zero Lata 350ml', 5.00)">+</button>
+        </div>
+
+        <div class="produto-card" onclick="addItem('Guaraná Lata 350ml', 5.00)">
+          <div class="produto-nome">Guaraná Lata</div>
+          <div class="produto-preco">R$ 5,00</div>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Guaraná Lata 350ml', 5.00)">+</button>
+        </div>
+
+        <div class="produto-card" onclick="addItem('Guaraná Jesus Lata 350ml', 5.00)">
+          <div class="produto-nome">Guaraná Jesus Lata</div>
+          <div class="produto-preco">R$ 5,00</div>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Guaraná Jesus Lata 350ml', 5.00)">+</button>
+        </div>
+
+        <div class="produto-card" onclick="addItem('Água Tônica Lata 350ml', 5.00)">
+          <div class="produto-nome">Água Tônica Lata</div>
+          <div class="produto-preco">R$ 5,00</div>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Água Tônica Lata 350ml', 5.00)">+</button>
+        </div>
+
+        <div class="produto-card" onclick="addItem('Energético', 6.00)">
+          <div class="produto-nome">Energético</div>
+          <div class="produto-preco">R$ 6,00</div>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Energético', 6.00)">+</button>
+        </div>
+
+      </div>
+    </section>
+    <!-- -------- /BEBIDAS -------- -->
+
+
+    <!-- -------- SUCOS -------- -->
+    <section class="secao" id="sucos">
+      <div class="secao-titulo">🍹 SUCOS NATURAIS</div>
+
+      <!-- 500ml -->
+      <div class="produto-card" onclick="addItem('Suco de Laranja 500ml', 12.00)">
+        <div class="produto-info">
+          <div class="produto-nome">Suco de Laranja 500ml</div>
+          <div class="produto-desc">Natural · c/ leite R$ 14,00</div>
+        </div>
+        <div class="produto-preco">R$ 12,00</div>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Suco de Laranja 500ml', 12.00)">+</button>
+      </div>
+
+      <div class="produto-card" onclick="addItem('Suco de Maracujá 500ml', 12.00)">
+        <div class="produto-info">
+          <div class="produto-nome">Suco de Maracujá 500ml</div>
+          <div class="produto-desc">Natural · c/ leite R$ 14,00</div>
+        </div>
+        <div class="produto-preco">R$ 12,00</div>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Suco de Maracujá 500ml', 12.00)">+</button>
+      </div>
+
+      <div class="produto-card" onclick="addItem('Suco de Goiaba 500ml', 8.00)">
+        <div class="produto-info">
+          <div class="produto-nome">Suco de Goiaba 500ml</div>
+          <div class="produto-desc">Natural · c/ leite R$ 10,00</div>
+        </div>
+        <div class="produto-preco">R$ 8,00</div>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Suco de Goiaba 500ml', 8.00)">+</button>
+      </div>
+
+      <div class="produto-card" onclick="addItem('Suco de Cajá 500ml', 8.00)">
+        <div class="produto-info">
+          <div class="produto-nome">Suco de Cajá 500ml</div>
+          <div class="produto-desc">Natural</div>
+        </div>
+        <div class="produto-preco">R$ 8,00</div>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Suco de Cajá 500ml', 8.00)">+</button>
+      </div>
+
+      <div class="produto-card" onclick="addItem('Suco de Cupuaçu 500ml', 8.00)">
+        <div class="produto-info">
+          <div class="produto-nome">Suco de Cupuaçu 500ml</div>
+          <div class="produto-desc">Natural · c/ leite R$ 10,00</div>
+        </div>
+        <div class="produto-preco">R$ 8,00</div>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Suco de Cupuaçu 500ml', 8.00)">+</button>
+      </div>
+
+      <div class="produto-card" onclick="addItem('Suco de Abacaxi c/ Hortelã 500ml', 8.00)">
+        <div class="produto-info">
+          <div class="produto-nome">Suco de Abacaxi c/ Hortelã 500ml</div>
+          <div class="produto-desc">Natural</div>
+        </div>
+        <div class="produto-preco">R$ 8,00</div>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Suco de Abacaxi c/ Hortelã 500ml', 8.00)">+</button>
+      </div>
+
+      <!-- Jarra 1L -->
+      <div class="separador-interno">— Jarra 1L —</div>
+
+      <div class="produto-card" onclick="addItem('Suco de Laranja Jarra 1L', 24.00)">
+        <div class="produto-info">
+          <div class="produto-nome">Suco de Laranja Jarra 1L</div>
+          <div class="produto-desc">Natural · c/ leite R$ 26,00</div>
+        </div>
+        <div class="produto-preco">R$ 24,00</div>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Suco de Laranja Jarra 1L', 24.00)">+</button>
+      </div>
+
+      <div class="produto-card" onclick="addItem('Suco de Maracujá Jarra 1L', 24.00)">
+        <div class="produto-info">
+          <div class="produto-nome">Suco de Maracujá Jarra 1L</div>
+          <div class="produto-desc">Natural · c/ leite R$ 26,00</div>
+        </div>
+        <div class="produto-preco">R$ 24,00</div>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Suco de Maracujá Jarra 1L', 24.00)">+</button>
+      </div>
+
+      <div class="produto-card" onclick="addItem('Suco de Goiaba Jarra 1L', 16.00)">
+        <div class="produto-info">
+          <div class="produto-nome">Suco de Goiaba Jarra 1L</div>
+          <div class="produto-desc">Natural · c/ leite R$ 18,00</div>
+        </div>
+        <div class="produto-preco">R$ 16,00</div>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Suco de Goiaba Jarra 1L', 16.00)">+</button>
+      </div>
+
+      <div class="produto-card" onclick="addItem('Suco de Cajá Jarra 1L', 16.00)">
+        <div class="produto-info">
+          <div class="produto-nome">Suco de Cajá Jarra 1L</div>
+          <div class="produto-desc">Natural</div>
+        </div>
+        <div class="produto-preco">R$ 16,00</div>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Suco de Cajá Jarra 1L', 16.00)">+</button>
+      </div>
+
+      <div class="produto-card" onclick="addItem('Suco de Cupuaçu Jarra 1L', 16.00)">
+        <div class="produto-info">
+          <div class="produto-nome">Suco de Cupuaçu Jarra 1L</div>
+          <div class="produto-desc">Natural · c/ leite R$ 18,00</div>
+        </div>
+        <div class="produto-preco">R$ 16,00</div>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Suco de Cupuaçu Jarra 1L', 16.00)">+</button>
+      </div>
+
+      <div class="produto-card" onclick="addItem('Suco de Abacaxi c/ Hortelã Jarra 1L', 16.00)">
+        <div class="produto-info">
+          <div class="produto-nome">Suco de Abacaxi c/ Hortelã Jarra 1L</div>
+          <div class="produto-desc">Natural</div>
+        </div>
+        <div class="produto-preco">R$ 16,00</div>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Suco de Abacaxi c/ Hortelã Jarra 1L', 16.00)">+</button>
+      </div>
+
+    </section>
+    <!-- -------- /SUCOS -------- -->
+
+
+    <!-- -------- ADICIONAIS -------- -->
+    <section class="secao" id="adicionais">
+      <div class="secao-titulo">➕ ADICIONAIS</div>
+
+      <div class="bebidas-grid">
+
+        <div class="produto-card" id="produtoid-adic-0" onclick="addItem('Adicional: Cheddar', 2.00)">
+          <div class="produto-nome">Cheddar</div>
+          <div class="produto-preco">R$ 2,00</div>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Adicional: Cheddar', 2.00)">+</button>
+        </div>
+
+        <div class="produto-card" id="produtoid-adic-1" onclick="addItem('Adicional: Catupiry', 2.00)">
+          <div class="produto-nome">Catupiry</div>
+          <div class="produto-preco">R$ 2,00</div>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Adicional: Catupiry', 2.00)">+</button>
+        </div>
+
+        <div class="produto-card" id="produtoid-adic-2" onclick="addItem('Adicional: Salsicha', 2.00)">
+          <div class="produto-nome">Salsicha extra</div>
+          <div class="produto-preco">R$ 2,00</div>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Adicional: Salsicha', 2.00)">+</button>
+        </div>
+
+        <div class="produto-card" id="produtoid-adic-3" onclick="addItem('Adicional: Banana', 3.00)">
+          <div class="produto-nome">Banana</div>
+          <div class="produto-preco">R$ 3,00</div>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Adicional: Banana', 3.00)">+</button>
+        </div>
+
+      </div>
+    </section>
+    <!-- -------- /ADICIONAIS -------- -->
+
+  </main>
+  <!-- ======================= /MAIN ========================= -->
+
+
+  <!-- ===================== FLUTUANTES ===================== -->
+
+  <!-- Botão carrinho: aparece ao adicionar itens, gerenciado por atualizarCarrinho() -->
+  <button class="carrinho-btn" id="carrinhoBtn" onclick="abrirCarrinho()">
+    🛒 VER PEDIDO
+    <span class="carrinho-badge" id="carrinhoQtd">0</span>
+  </button>
+
+  <!-- Botão WhatsApp: sempre visível, abre conversa com a loja -->
+  <a href="https://wa.me/5569993009408" target="_blank" class="wpp-fixo" aria-label="WhatsApp da loja">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <!-- ===================== /FLUTUANTES ===================== -->
+
+
+  <!-- ======================= MODAL ======================== -->
+
+  <!-- Overlay: fundo escuro, fechar ao clicar -->
+  <div class="overlay" id="overlay" onclick="fecharCarrinho()"></div>
+
+  <!-- Modal carrinho (bottom sheet) -->
+  <div class="modal-carrinho" id="modalCarrinho" role="dialog" aria-label="Carrinho">
+
+    <div class="modal-handle"></div>
+
+    <div class="modal-header">
+      <div class="modal-titulo">🛒 MEU PEDIDO</div>
+      <button class="btn-fechar" onclick="fecharCarrinho()" aria-label="Fechar">✕</button>
+    </div>
+
+    <!-- Conteúdo gerado dinamicamente por renderizarModal() -->
+    <div class="modal-body" id="modalBody">
+      <div class="carrinho-vazio">
+        Seu carrinho está vazio 🦈<br>Adicione itens do cardápio!
+      </div>
+    </div>
+
+    <!-- Rodapé: visível somente com itens no carrinho -->
+    <div class="modal-footer" id="modalFooter" style="display: none;">
+
+      <!-- Campo de tipo de pedido -->
+      <div class="tipo-pedido">
+        <button class="tipo-btn active" onclick="selecionarTipo('entrega', this)">🛵 Entrega</button>
+        <button class="tipo-btn" onclick="selecionarTipo('retirada', this)">🏃 Retirada</button>
+        <button class="tipo-btn" onclick="selecionarTipo('local', this)">🪑 No local</button>
+      </div>
+
+      <!-- Campo de bairro: só aparece se tipo = entrega -->
+      <div id="campoBairro" class="campo-bairro">
+        <input type="text" id="inputBairro" placeholder="Digite seu bairro para entrega..." />
+        <span class="bairro-obs">Taxa de entrega a combinar conforme distância</span>
+      </div>
+
+      <div class="total-linha">
+        <span class="total-label">Total do pedido</span>
+        <span class="total-valor" id="totalValor">R$ 0,00</span>
+      </div>
+      <button class="btn-whatsapp" onclick="enviarWhatsApp()">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        ENVIAR PEDIDO
+      </button>
+    </div>
+
+  </div>
+  <!-- ======================= /MODAL ======================== -->
+
+
+  <!-- ===================== MODAL SOBRE A LOJA ===================== -->
+  <div class="overlay" id="overlayLoja" onclick="fecharSobreLoja()"></div>
+
+  <div class="modal-lateral-sobre" id="modalSobreLoja">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <div class="modal-titulo">🦈 Sobre a Loja</div>
+      <button class="btn-fechar" onclick="fecharSobreLoja()">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="sobre-bloco">
+        <div class="sobre-titulo">Endereço</div>
+        <div class="sobre-texto">R. dos Andrades, 10049 – Bairro Mariana, Porto Velho/RO</div>
+      </div>
+
+      <div class="sobre-bloco">
+        <div class="sobre-titulo">Horário</div>
+        <div class="sobre-texto">Segunda a Sábado: 18h às 23h</div>
+      </div>
+
+      <div class="sobre-bloco">
+        <div class="sobre-titulo">Como pedir</div>
+        <div class="sobre-opcoes">
+          <div class="sobre-opcao">🛵 <strong>Entrega</strong> — taxa conforme a distância</div>
+          <div class="sobre-opcao">🏃 <strong>Retirada no local</strong> — sem taxa</div>
+          <div class="sobre-opcao">🪑 <strong>Comer no local</strong> — sem taxa</div>
+        </div>
+      </div>
+
+      <div class="sobre-bloco">
+        <div class="sobre-titulo">Formas de pagamento</div>
+        <div class="sobre-opcoes">
+          <div class="sobre-opcao">💵 Dinheiro</div>
+          <div class="sobre-opcao">💳 Cartão de débito e crédito</div>
+          <div class="sobre-opcao">📱 PIX</div>
+        </div>
+      </div>
+
+      <div class="sobre-bloco">
+        <div class="sobre-titulo">Redes sociais</div>
+        <div class="sobre-redes">
+          <a href="https://www.facebook.com/share/1FWYtm9rRM/" target="_blank" class="rede-btn facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            Facebook
+          </a>
+          <a href="https://www.instagram.com/tubaraodogueria/" target="_blank" class="rede-btn instagram">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            @tubaraodogueria
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- ============================================================ -->
+
+
+  <!-- =================== MENU LATERAL DE PRODUTOS =================== -->
+  <div class="overlay" id="overlayMenu" onclick="fecharMenuLateral()"></div>
+
+  <div class="menu-lateral" id="menuLateral">
+    <div class="menu-lateral-header">
+      <div class="modal-titulo">📋 Produtos</div>
+      <button class="btn-fechar" onclick="fecharMenuLateral()">✕</button>
+    </div>
+    <div class="menu-lateral-body">
+
+      <div class="menu-cat-titulo">🌭 Hot Dogs</div>
+      <div class="menu-item" onclick="irProduto('produtoid-dogs-0')">Tubarão Tradicional <span>R$ 6,00</span></div>
+      <div class="menu-item" onclick="irProduto('produtoid-dogs-1')">Tubarão Duplo <span>R$ 8,00</span></div>
+      <div class="menu-item" onclick="irProduto('produtoid-dogs-2')">Tubarão Calabresa <span>R$ 12,00</span></div>
+      <div class="menu-item" onclick="irProduto('produtoid-dogs-3')">Tubarão Calabresa e Banana <span>R$ 14,00</span></div>
+      <div class="menu-item" onclick="irProduto('produtoid-dogs-4')">Tubarão Bacon <span>R$ 12,00</span></div>
+      <div class="menu-item" onclick="irProduto('produtoid-dogs-5')">Tubarão Bacon e Banana <span>R$ 14,00</span></div>
+      <div class="menu-item" onclick="irProduto('produtoid-dogs-6')">Tubarão Calabresa, Bacon e Banana <span>R$ 15,00</span></div>
+      <div class="menu-item" onclick="irProduto('produtoid-dogs-7')">Tubarão Carne Desfiada <span>R$ 12,00</span></div>
+      <div class="menu-item" onclick="irProduto('produtoid-dogs-8')">Tubarão Carne Desfiada e Banana <span>R$ 14,00</span></div>
+      <div class="menu-item" onclick="irProduto('produtoid-dogs-9')">Tubarão Carne Desfiada, Calabresa e Bacon <span>R$ 15,00</span></div>
+      <div class="menu-item destaque-item" onclick="irProduto('produtoid-dogs-10')">⚡ Tubarão Blaster <span>R$ 18,00</span></div>
+      <div class="menu-item destaque-item" onclick="irProduto('produtoid-dogs-11')">⚡ Tubarão Branco <span>R$ 20,00</span></div>
+      <div class="menu-item destaque-item" onclick="irProduto('produtoid-dogs-12')">🦈 Tubarão Megalodon <span>R$ 20,00</span></div>
+
+      <div class="menu-cat-titulo">🥤 Bebidas</div>
+      <div class="menu-item" onclick="fecharMenuLateral(); scrollToSection('bebidas', document.querySelector('.cat-btn:nth-child(2)'))">Ver todas as bebidas →</div>
+
+      <div class="menu-cat-titulo">🍹 Sucos Naturais</div>
+      <div class="menu-item" onclick="fecharMenuLateral(); scrollToSection('sucos', document.querySelector('.cat-btn:nth-child(3)'))">Ver todos os sucos →</div>
+
+      <div class="menu-cat-titulo">➕ Adicionais</div>
+      <div class="menu-item" onclick="irProduto('produtoid-adic-0')">Cheddar <span>R$ 2,00</span></div>
+      <div class="menu-item" onclick="irProduto('produtoid-adic-1')">Catupiry <span>R$ 2,00</span></div>
+      <div class="menu-item" onclick="irProduto('produtoid-adic-2')">Salsicha extra <span>R$ 2,00</span></div>
+      <div class="menu-item" onclick="irProduto('produtoid-adic-3')">Banana <span>R$ 3,00</span></div>
+
+    </div>
+  </div>
+  <!-- =================================================================== -->
+
+
+  <!-- JS carregado ao final para garantir que o DOM esteja pronto -->
+  <script src="js/app.js"></script>
+
+</body>
+</html>
