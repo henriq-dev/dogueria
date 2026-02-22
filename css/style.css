@@ -755,9 +755,6 @@ main {
   main                    { max-width: 780px; }
 
   /* Cards em 2 colunas para aproveitar largura */
-  main .secao > .produto-card + .produto-card {
-    /* mantém lista mas com padding maior */
-  }
 
   /* Grid bebidas — 3 colunas no tablet */
   .bebidas-grid           { grid-template-columns: 1fr 1fr 1fr; }
@@ -817,11 +814,7 @@ main {
   /* Grid bebidas — 3 colunas no desktop */
   .bebidas-grid           { grid-template-columns: 1fr 1fr 1fr; }
 
-  /* Dogs em 2 colunas */
-  #dogs .produto-card,
-  #sucos .produto-card {
-    /* lista normal, mais espaço */
-  }
+  /* Dogs em 2 colunas — lista normal, mais espaço */
 
   /* Header maior e mais respeitoso */
   .logo-titulo            { font-size: 56px; }
