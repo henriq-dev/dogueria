@@ -393,13 +393,21 @@ main {
   left: 50%;
   transform: translateX(-50%);
 
-  /* Cor sólida, sem transparência nenhuma */
-  background: var(--amarelo);
-  color: var(--azul-escuro);
+  /* Background em hex fixo — evita problema com var() no Safari iOS */
+  background: #f5d800 !important;
+  -webkit-background: #f5d800 !important;
+  color: #0d2d7a !important;
+
+  /* Garante que nunca fique transparente */
   opacity: 1 !important;
+  -webkit-opacity: 1 !important;
+
+  /* Sem filtros que causam transparência no iOS */
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 
   border: none;
-  border-bottom: 4px solid #c9a800; /* sombra inferior dá profundidade */
+  border-bottom: 4px solid #c9a800;
   border-radius: 50px;
   padding: 15px 32px;
 
@@ -412,44 +420,72 @@ main {
   align-items: center;
   gap: 12px;
 
-  /* Sombra colorida amarela — destaca do fundo azul */
-  box-shadow: 0 6px 24px rgba(245,216,0,.55), 0 2px 8px rgba(0,0,0,.3);
-
-  z-index: 200;
+  box-shadow: 0 6px 24px rgba(245,216,0,.6), 0 2px 8px rgba(0,0,0,.35);
+  z-index: 999;
   white-space: nowrap;
-  transition: transform .2s, box-shadow .2s, background .2s;
+  transition: transform .2s, box-shadow .2s;
 
-  /* Animação de entrada */
-  animation: slideUp .35s cubic-bezier(.34,1.56,.64,1);
+  /* fill-mode: forwards garante que o estado final da animação seja mantido */
+  animation: slideUp .35s cubic-bezier(.34,1.56,.64,1) both;
+  -webkit-animation: slideUp .35s cubic-bezier(.34,1.56,.64,1) both;
 }
 
-/* Entrada suave vindo de baixo */
+/* Entrada suave — opacity vai de 0 a 1 e FICA em 1 */
 @keyframes slideUp {
-  from { transform: translateX(-50%) translateY(60px); opacity: 0; }
-  to   { transform: translateX(-50%) translateY(0);    opacity: 1; }
+  from {
+    transform: translateX(-50%) translateY(60px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes slideUp {
+  from {
+    -webkit-transform: translateX(-50%) translateY(60px);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
 }
 
-/* Pulso de atenção — chama o olho do cliente */
+/* Pulso de atenção */
 @keyframes pulsarBtn {
-  0%, 100% { box-shadow: 0 6px 24px rgba(245,216,0,.55), 0 2px 8px rgba(0,0,0,.3); }
-  50%       { box-shadow: 0 6px 36px rgba(245,216,0,.9), 0 2px 16px rgba(0,0,0,.4); transform: translateX(-50%) scale(1.03); }
+  0%, 100% {
+    box-shadow: 0 6px 24px rgba(245,216,0,.6), 0 2px 8px rgba(0,0,0,.3);
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    box-shadow: 0 6px 40px rgba(245,216,0,.95), 0 2px 16px rgba(0,0,0,.4);
+    transform: translateX(-50%) scale(1.04);
+  }
+}
+@-webkit-keyframes pulsarBtn {
+  0%, 100% {
+    -webkit-transform: translateX(-50%) scale(1);
+  }
+  50% {
+    -webkit-transform: translateX(-50%) scale(1.04);
+  }
 }
 
-/* Aplica o pulso depois de 2s e repete a cada 3s */
 .carrinho-btn.pulsar {
-  animation: pulsarBtn 1.2s ease-in-out infinite;
+  animation: pulsarBtn 1.2s ease-in-out infinite both;
+  -webkit-animation: pulsarBtn 1.2s ease-in-out infinite both;
 }
 
-/* Hover — sem transparência, só escala e sombra maior */
+/* Hover */
 .carrinho-btn:hover {
-  background: var(--amarelo);
+  background: #f5d800 !important;
   opacity: 1 !important;
   transform: translateX(-50%) scale(1.07);
-  box-shadow: 0 10px 36px rgba(245,216,0,.7), 0 4px 16px rgba(0,0,0,.4);
-  border-bottom-color: #a88900;
+  box-shadow: 0 10px 36px rgba(245,216,0,.75), 0 4px 16px rgba(0,0,0,.4);
 }
 
-/* Active — aperta visualmente ao clicar */
+/* Active — feedback ao toque */
 .carrinho-btn:active {
   transform: translateX(-50%) scale(0.97);
   border-bottom-width: 2px;
@@ -755,6 +791,9 @@ main {
   main                    { max-width: 780px; }
 
   /* Cards em 2 colunas para aproveitar largura */
+  main .secao > .produto-card + .produto-card {
+    /* mantém lista mas com padding maior */
+  }
 
   /* Grid bebidas — 3 colunas no tablet */
   .bebidas-grid           { grid-template-columns: 1fr 1fr 1fr; }
@@ -814,7 +853,11 @@ main {
   /* Grid bebidas — 3 colunas no desktop */
   .bebidas-grid           { grid-template-columns: 1fr 1fr 1fr; }
 
-  /* Dogs em 2 colunas — lista normal, mais espaço */
+  /* Dogs em 2 colunas */
+  #dogs .produto-card,
+  #sucos .produto-card {
+    /* lista normal, mais espaço */
+  }
 
   /* Header maior e mais respeitoso */
   .logo-titulo            { font-size: 56px; }
