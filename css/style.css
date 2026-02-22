@@ -22,6 +22,15 @@
    Toda a identidade visual da loja fica aqui.
    Para trocar tema: edite só este bloco.
    ------------------------------------------------ */
+
+   @font-face {
+  font-family: 'Germania One';
+  src: url('../fonts/Very Popular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Cores */
   --azul:         #1a4fc4;
@@ -34,7 +43,7 @@
   --cinza-texto:  #666666;
 
   /* Tipografia */
-  --fonte-titulo:     'Bebas Neue', sans-serif;
+  --fonte-titulo: 'Germania One', serif;
   --fonte-condensada: 'Barlow Condensed', sans-serif;
   --fonte-corpo:      'Barlow', sans-serif;
 
@@ -410,6 +419,8 @@ main {
 .carrinho-btn:hover {
   transform: translateX(-50%) scale(1.05);
   box-shadow: 0 8px 30px rgba(0,0,0,.4);
+  background: var(--amarelo);
+  opacity: 1;
 }
 
 .carrinho-badge {

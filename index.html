@@ -17,7 +17,8 @@
   <!-- Fontes: Bebas Neue (títulos) | Barlow Condensed (labels) | Barlow (corpo) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -446,28 +447,28 @@
 
       <div class="bebidas-grid">
 
-        <div class="produto-card" id="produtoid-adic-0" onclick="addItem('Adicional: Cheddar', 2.00)">
+        <div class="produto-card" id="produtoid-adic-0" onclick="addItem('Adicional: Cheddar', 3.00)">
           <div class="produto-nome">Cheddar</div>
-          <div class="produto-preco">R$ 2,00</div>
-          <button class="btn-add" onclick="event.stopPropagation(); addItem('Adicional: Cheddar', 2.00)">+</button>
-        </div>
-
-        <div class="produto-card" id="produtoid-adic-1" onclick="addItem('Adicional: Catupiry', 2.00)">
-          <div class="produto-nome">Catupiry</div>
-          <div class="produto-preco">R$ 2,00</div>
-          <button class="btn-add" onclick="event.stopPropagation(); addItem('Adicional: Catupiry', 2.00)">+</button>
-        </div>
-
-        <div class="produto-card" id="produtoid-adic-2" onclick="addItem('Adicional: Salsicha', 2.00)">
-          <div class="produto-nome">Salsicha extra</div>
-          <div class="produto-preco">R$ 2,00</div>
-          <button class="btn-add" onclick="event.stopPropagation(); addItem('Adicional: Salsicha', 2.00)">+</button>
-        </div>
-
-        <div class="produto-card" id="produtoid-adic-3" onclick="addItem('Adicional: Banana', 3.00)">
-          <div class="produto-nome">Banana</div>
           <div class="produto-preco">R$ 3,00</div>
-          <button class="btn-add" onclick="event.stopPropagation(); addItem('Adicional: Banana', 3.00)">+</button>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Adicional: Cheddar', 3.00)">+</button>
+        </div>
+
+        <div class="produto-card" id="produtoid-adic-1" onclick="addItem('Adicional: Catupiry', 3.00)">
+          <div class="produto-nome">Catupiry</div>
+          <div class="produto-preco">R$ 3,00</div>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Adicional: Catupiry', 3.00)">+</button>
+        </div>
+
+        <div class="produto-card" id="produtoid-adic-2" onclick="addItem('Adicional: Salsicha', 3.00)">
+          <div class="produto-nome">Salsicha extra</div>
+          <div class="produto-preco">R$ 3,00</div>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Adicional: Salsicha', 3.00)">+</button>
+        </div>
+
+        <div class="produto-card" id="produtoid-adic-3" onclick="addItem('Adicional: Banana', 4.00)">
+          <div class="produto-nome">Banana</div>
+          <div class="produto-preco">R$ 4,00</div>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Adicional: Banana', 4.00)">+</button>
         </div>
 
       </div>
@@ -636,10 +637,10 @@
       <div class="menu-item" onclick="fecharMenuLateral(); scrollToSection('sucos', document.querySelector('.cat-btn:nth-child(3)'))">Ver todos os sucos →</div>
 
       <div class="menu-cat-titulo">➕ Adicionais</div>
-      <div class="menu-item" onclick="irProduto('produtoid-adic-0')">Cheddar <span>R$ 2,00</span></div>
-      <div class="menu-item" onclick="irProduto('produtoid-adic-1')">Catupiry <span>R$ 2,00</span></div>
-      <div class="menu-item" onclick="irProduto('produtoid-adic-2')">Salsicha extra <span>R$ 2,00</span></div>
-      <div class="menu-item" onclick="irProduto('produtoid-adic-3')">Banana <span>R$ 3,00</span></div>
+      <div class="menu-item" onclick="irProduto('produtoid-adic-0')">Cheddar <span>R$ 3,00</span></div>
+      <div class="menu-item" onclick="irProduto('produtoid-adic-1')">Catupiry <span>R$ 3,00</span></div>
+      <div class="menu-item" onclick="irProduto('produtoid-adic-2')">Salsicha extra <span>R$ 3,00</span></div>
+      <div class="menu-item" onclick="irProduto('produtoid-adic-3')">Banana <span>R$ 4,00</span></div>
 
     </div>
   </div>
