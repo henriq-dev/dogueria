@@ -14,6 +14,7 @@
    10. Overlay
    11. Modal Carrinho
    12. Responsivo
+    - rodape -
    ================================================ */
 
 
@@ -130,7 +131,7 @@ header::before {
 
 .logo-slogan {
   font-family: var(--fonte-condensada);
-  font-size: 11px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--amarelo);
   letter-spacing: 1px;
@@ -1362,3 +1363,28 @@ main {
 .menu-item.destaque-item span {
   color: var(--verde);
 }
+
+/* ------------------------------------------------
+      - ropade -
+   Toda a identidade visual da loja fica aqui.
+   Para trocar tema: edite só este bloco.
+   ------------------------------------------------ */
+
+   footer {
+        box-shadow: inset 0px 1px 20px 0px rgb(14 31 93);
+    height: 50px;
+    padding: 5px;
+    margin-top: 0.3px;
+    margin-bottom: px;
+    background-color: #0000005e;
+    color: #ffffff;
+    text-align: center;
+   }
+
+   footer a {
+
+   }
+
+   main {
+    box-shadow: inset 0px 1px 20px 0px rgb(0, 0, 0);
+   }

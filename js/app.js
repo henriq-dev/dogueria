@@ -110,8 +110,8 @@ function removeItem(nome) {
  */
 function atualizarCarrinho() {
   const totalItens = carrinho.reduce((soma, item) => soma + item.qtd, 0);
-  const btn        = document.getElementById('carrinhoBtn');
-  const badge      = document.getElementById('carrinhoQtd');
+  const btn = document.getElementById('carrinhoBtn');
+  const badge = document.getElementById('carrinhoQtd');
 
   badge.textContent = totalItens;
   btn.style.display = totalItens > 0 ? 'flex' : 'none';
@@ -129,7 +129,7 @@ function atualizarCarrinho() {
  * Exibe mensagem de vazio se não houver itens.
  */
 function renderizarModal() {
-  const body   = document.getElementById('modalBody');
+  const body = document.getElementById('modalBody');
   const footer = document.getElementById('modalFooter');
 
   // Carrinho vazio: mostra mensagem e esconde o footer
@@ -146,7 +146,7 @@ function renderizarModal() {
   // Carrinho com itens: gera HTML e calcula total
   footer.style.display = 'block';
 
-  let html  = '';
+  let html = '';
   let total = 0;
 
   carrinho.forEach(item => {
@@ -223,7 +223,7 @@ function enviarWhatsApp() {
 
   // Valida endereço se for entrega
   if (tipoPedido === 'entrega') {
-    const rua    = document.getElementById('inputRua')?.value?.trim() || '';
+    const rua = document.getElementById('inputRua')?.value?.trim() || '';
     const bairro = document.getElementById('inputBairro')?.value?.trim() || '';
     if (!rua && !bairro) {
       alert('Por favor, preencha pelo menos a rua/avenida e o bairro para entrega.');
@@ -238,13 +238,13 @@ function enviarWhatsApp() {
   }
 
   let mensagem = `*${LOJA.nome} - Novo Pedido*\n\n`;
-  let total    = 0;
+  let total = 0;
 
   // Lista cada item com quantidade e subtotal
   carrinho.forEach(item => {
-    const sub  = item.preco * item.qtd;
-    total     += sub;
-    mensagem  += `- ${item.qtd}x ${item.nome} - R$ ${sub.toFixed(2).replace('.', ',')}\n`;
+    const sub = item.preco * item.qtd;
+    total += sub;
+    mensagem += `- ${item.qtd}x ${item.nome} - R$ ${sub.toFixed(2).replace('.', ',')}\n`;
   });
 
   mensagem += `\n*Total: R$ ${total.toFixed(2).replace('.', ',')}*`;
@@ -255,9 +255,9 @@ function enviarWhatsApp() {
 
   // Endereço completo
   if (tipoPedido === 'entrega') {
-    const rua    = document.getElementById('inputRua')?.value?.trim() || '';
+    const rua = document.getElementById('inputRua')?.value?.trim() || '';
     const bairro = document.getElementById('inputBairro')?.value?.trim() || '';
-    const cep    = document.getElementById('inputCep')?.value?.trim() || '';
+    const cep = document.getElementById('inputCep')?.value?.trim() || '';
     const partes = [rua, bairro, cep ? 'CEP ' + cep : ''].filter(Boolean);
     mensagem += `\nEndereço: ${partes.join(', ') || '(não informado)'}`;
   }
@@ -288,23 +288,23 @@ function enviarWhatsApp() {
  * Atualiza o badge #statusBadge com o estado atual.
  */
 function verificarStatus() {
-  const agora  = new Date();
-  const dia    = agora.getDay();
-  const hora   = agora.getHours();
-  const badge  = document.getElementById('statusBadge');
+  const agora = new Date();
+  const dia = agora.getDay();
+  const hora = agora.getHours();
+  const badge = document.getElementById('statusBadge');
 
-  const diaAberto  = LOJA.horario.diasAbertos.includes(dia);
+  const diaAberto = LOJA.horario.diasAbertos.includes(dia);
   const horaAberto = hora >= LOJA.horario.abreHora && hora < LOJA.horario.fechaHora;
-  const aberto     = diaAberto && horaAberto;
+  const aberto = diaAberto && horaAberto;
 
   if (aberto) {
-    badge.className   = 'status-badge aberto';
-    badge.innerHTML   = '<span class="status-dot"></span>ABERTO AGORA';
+    badge.className = 'status-badge aberto';
+    badge.innerHTML = '<span class="status-dot"></span>ABERTO AGORA';
   } else {
     // Define próximo dia de abertura para a mensagem
     const proximoDia = dia === 0 ? 'segunda' : 'hoje';
-    badge.className   = 'status-badge fechado';
-    badge.innerHTML   = `<span class="status-dot"></span>FECHADO · Abre ${proximoDia} às ${LOJA.horario.abreHora}h`;
+    badge.className = 'status-badge fechado';
+    badge.innerHTML = `<span class="status-dot"></span>FECHADO · Abre ${proximoDia} às ${LOJA.horario.abreHora}h`;
   }
 }
 
@@ -391,7 +391,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Máscara automática para CEP: 00000-000
   const cepInput = document.getElementById('inputCep');
   if (cepInput) {
-    cepInput.addEventListener('input', function() {
+    cepInput.addEventListener('input', function () {
       let v = this.value.replace(/\D/g, '').slice(0, 8);
       if (v.length > 5) v = v.slice(0, 5) + '-' + v.slice(5);
       this.value = v;
