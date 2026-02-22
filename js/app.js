@@ -194,7 +194,8 @@ function abrirCarrinho() {
   renderizarModal();
   document.getElementById('overlay').classList.add('open');
   document.getElementById('modalCarrinho').classList.add('open');
-  document.body.style.overflow = 'hidden';   // Trava o scroll da página
+  document.body.style.overflow = 'hidden';
+  document.getElementById('carrinhoBtn').style.display = 'none'; // Esconde botão flutuante
 }
 
 /**
@@ -204,6 +205,7 @@ function fecharCarrinho() {
   document.getElementById('overlay').classList.remove('open');
   document.getElementById('modalCarrinho').classList.remove('open');
   document.body.style.overflow = '';
+  atualizarCarrinho(); // Restaura botão flutuante se houver itens
 }
 
 

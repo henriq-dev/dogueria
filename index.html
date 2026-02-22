@@ -21,6 +21,35 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Endereço completo */
+    .campo-bairro { display: flex; flex-direction: column; gap: 8px; }
+    .campo-bairro input { width: 100%; box-sizing: border-box; }
+    #inputCep { max-width: 160px; }
+
+    /* Pagamento */
+    .pagamento-titulo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 0.85rem;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      color: #555; margin: 12px 0 6px;
+    }
+    .pagamento-opcoes { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+    .pagamento-btn {
+      flex: 1 1 calc(50% - 6px); padding: 9px 6px;
+      border: 2px solid #ddd; border-radius: 10px;
+      background: #f8f8f8;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600; font-size: 0.9rem;
+      cursor: pointer; transition: all .15s; color: #333; text-align: center;
+    }
+    .pagamento-btn.active { border-color: #0d2d7a; background: #e8edf8; color: #0d2d7a; }
+    #campoTroco input {
+      margin-bottom: 8px; padding: 9px 12px;
+      border: 1.5px solid #ddd; border-radius: 10px;
+      font-size: 0.95rem; width: 100%; box-sizing: border-box;
+    }
+  </style>
 </head>
 <body>
 
@@ -527,10 +556,24 @@
         <button class="tipo-btn" onclick="selecionarTipo('local', this)">🪑 No local</button>
       </div>
 
-      <!-- Campo de bairro: só aparece se tipo = entrega -->
+      <!-- Campo de endereço: só aparece se tipo = entrega -->
       <div id="campoBairro" class="campo-bairro">
-        <input type="text" id="inputBairro" placeholder="Digite seu bairro para entrega..." />
+        <input type="text" id="inputRua"    placeholder="Rua / Avenida e número..." />
+        <input type="text" id="inputBairro" placeholder="Bairro..." />
+        <input type="text" id="inputCep"    placeholder="CEP (ex: 76800-000)" maxlength="9" />
         <span class="bairro-obs">Taxa de entrega a combinar conforme distância</span>
+      </div>
+
+      <!-- Forma de pagamento -->
+      <div class="pagamento-titulo">💳 Forma de Pagamento</div>
+      <div class="pagamento-opcoes">
+        <button class="pagamento-btn" onclick="selecionarPagamento('pix', this)">📱 Pix</button>
+        <button class="pagamento-btn" onclick="selecionarPagamento('dinheiro', this)">💵 Dinheiro</button>
+        <button class="pagamento-btn" onclick="selecionarPagamento('debito', this)">💳 Débito</button>
+        <button class="pagamento-btn" onclick="selecionarPagamento('credito', this)">💳 Crédito</button>
+      </div>
+      <div id="campoTroco" style="display:none;">
+        <input type="number" id="inputTroco" placeholder="Troco para quanto? (R$)" min="0" step="0.01" />
       </div>
 
       <div class="total-linha">
@@ -649,6 +692,78 @@
 
   <!-- JS carregado ao final para garantir que o DOM esteja pronto -->
   <script src="js/app.js"></script>
+
+  <script>
+    // ---- PAGAMENTO ----
+    var _pagamentoSelecionado = '';
+
+    function selecionarPagamento(tipo, btn) {
+      _pagamentoSelecionado = tipo;
+      document.querySelectorAll('.pagamento-btn').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById('campoTroco').style.display = tipo === 'dinheiro' ? 'block' : 'none';
+      if (tipo !== 'dinheiro') document.getElementById('inputTroco').value = '';
+    }
+
+    // ---- MÁSCARA CEP ----
+    document.addEventListener('DOMContentLoaded', function() {
+      var cepInput = document.getElementById('inputCep');
+      if (cepInput) {
+        cepInput.addEventListener('input', function() {
+          var v = this.value.replace(/\D/g, '').slice(0, 8);
+          if (v.length > 5) v = v.slice(0, 5) + '-' + v.slice(5);
+          this.value = v;
+        });
+      }
+    });
+
+    // ---- PATCH enviarWhatsApp: endereço completo + pagamento ----
+    window.addEventListener('load', function() {
+      var _orig = window.enviarWhatsApp;
+      window.enviarWhatsApp = function() {
+        // Valida endereço se entrega
+        var campoEntrega = document.getElementById('campoBairro');
+        var visivel = campoEntrega && campoEntrega.style.display !== 'none';
+        if (visivel) {
+          var rua    = (document.getElementById('inputRua')    || {}).value || '';
+          var bairro = (document.getElementById('inputBairro') || {}).value || '';
+          var cep    = (document.getElementById('inputCep')    || {}).value || '';
+          if (!rua.trim() && !bairro.trim()) {
+            alert('Por favor, preencha pelo menos a rua/avenida e o bairro para entrega.');
+            return;
+          }
+          // Monta endereço completo no campo que app.js lê
+          var endCompleto = [rua.trim(), bairro.trim(), cep.trim() ? 'CEP ' + cep.trim() : ''].filter(Boolean).join(', ');
+          document.getElementById('inputBairro').value = endCompleto;
+        }
+
+        // Valida pagamento
+        if (!_pagamentoSelecionado) {
+          alert('Por favor, selecione uma forma de pagamento.');
+          return;
+        }
+
+        // Injeta pagamento via override do window.open
+        var labels = { pix: 'Pix', dinheiro: 'Dinheiro', debito: 'Cartão Débito', credito: 'Cartão Crédito' };
+        var infoPag = '💳 Pagamento: ' + labels[_pagamentoSelecionado];
+        var troco = document.getElementById('inputTroco').value;
+        if (_pagamentoSelecionado === 'dinheiro' && troco) {
+          infoPag += ' (troco para R$ ' + parseFloat(troco).toFixed(2).replace('.', ',') + ')';
+        }
+
+        var _openOrig = window.open;
+        window.open = function(url, target, features) {
+          if (url && url.includes('wa.me')) {
+            url += '%0A' + encodeURIComponent(infoPag);
+            window.open = _openOrig; // Restaura imediatamente
+          }
+          return _openOrig.call(window, url, target, features);
+        };
+
+        if (typeof _orig === 'function') _orig();
+      };
+    });
+  </script>
 
 </body>
 </html>
