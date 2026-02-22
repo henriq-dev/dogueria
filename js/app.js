@@ -387,6 +387,16 @@ document.addEventListener('DOMContentLoaded', () => {
   iniciarObservadorScroll();
 
   console.log('🦈 Tubarão Dogueria — cardápio iniciado!');
+
+  // Máscara automática para CEP: 00000-000
+  const cepInput = document.getElementById('inputCep');
+  if (cepInput) {
+    cepInput.addEventListener('input', function() {
+      let v = this.value.replace(/\D/g, '').slice(0, 8);
+      if (v.length > 5) v = v.slice(0, 5) + '-' + v.slice(5);
+      this.value = v;
+    });
+  }
 });
 
 
