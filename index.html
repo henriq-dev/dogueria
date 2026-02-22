@@ -21,6 +21,64 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Endereço completo — campos empilhados */
+    .campo-bairro {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .campo-bairro input {
+      width: 100%;
+      box-sizing: border-box;
+    }
+    #inputCep {
+      max-width: 160px;
+    }
+
+    /* Pagamento */
+    .pagamento-titulo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #555;
+      margin: 12px 0 6px;
+    }
+    .pagamento-opcoes {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .pagamento-btn {
+      flex: 1 1 calc(50% - 6px);
+      padding: 9px 6px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      background: #f8f8f8;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all .15s;
+      color: #333;
+      text-align: center;
+    }
+    .pagamento-btn.active {
+      border-color: #0d2d7a;
+      background: #e8edf8;
+      color: #0d2d7a;
+    }
+    #campoTroco input {
+      margin-bottom: 8px;
+      padding: 9px 12px;
+      border: 1.5px solid #ddd;
+      border-radius: 10px;
+      font-size: 0.95rem;
+    }
+  </style>
 </head>
 <body>
 
@@ -527,10 +585,24 @@
         <button class="tipo-btn" onclick="selecionarTipo('local', this)">🪑 No local</button>
       </div>
 
-      <!-- Campo de bairro: só aparece se tipo = entrega -->
+      <!-- Campo de endereço: só aparece se tipo = entrega -->
       <div id="campoBairro" class="campo-bairro">
-        <input type="text" id="inputBairro" placeholder="Digite seu bairro para entrega..." />
+        <input type="text" id="inputRua"    placeholder="Rua / Avenida e número..." />
+        <input type="text" id="inputBairro" placeholder="Bairro..." />
+        <input type="text" id="inputCep"    placeholder="CEP (ex: 76800-000)" maxlength="9" />
         <span class="bairro-obs">Taxa de entrega a combinar conforme distância</span>
+      </div>
+
+      <!-- Forma de pagamento -->
+      <div class="pagamento-titulo">💳 Forma de Pagamento</div>
+      <div class="pagamento-opcoes">
+        <button class="pagamento-btn" onclick="selecionarPagamento('pix', this)">📱 Pix</button>
+        <button class="pagamento-btn" onclick="selecionarPagamento('dinheiro', this)">💵 Dinheiro</button>
+        <button class="pagamento-btn" onclick="selecionarPagamento('debito', this)">💳 Débito</button>
+        <button class="pagamento-btn" onclick="selecionarPagamento('credito', this)">💳 Crédito</button>
+      </div>
+      <div id="campoTroco" style="display:none;">
+        <input type="number" id="inputTroco" placeholder="Troco para quanto? (R$)" min="0" step="0.01" style="width:100%;box-sizing:border-box;" />
       </div>
 
       <div class="total-linha">
@@ -647,8 +719,114 @@
   <!-- =================================================================== -->
 
 
+  <!-- Máscara e coleta de endereço completo -->
+  <script>
+    // ---- PAGAMENTO ----
+    var _pagamentoSelecionado = '';
+
+    function selecionarPagamento(tipo, btn) {
+      _pagamentoSelecionado = tipo;
+      document.querySelectorAll('.pagamento-btn').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      // Mostrar campo de troco se dinheiro
+      var campoTroco = document.getElementById('campoTroco');
+      if (tipo === 'dinheiro') {
+        campoTroco.style.display = 'block';
+      } else {
+        campoTroco.style.display = 'none';
+        document.getElementById('inputTroco').value = '';
+      }
+    }
+
+    function mascaraCep(input) {
+      let v = input.value.replace(/\D/g, '').substring(0, 8);
+      if (v.length > 5) v = v.substring(0,5) + '-' + v.substring(5);
+      input.value = v;
+    }
+
+    // Sobrescreve a coleta de endereço no enviarWhatsApp (chamado após app.js carregar)
+    document.addEventListener('DOMContentLoaded', function() {
+      window._getEnderecoEntrega = function() {
+        const cep = (document.getElementById('inputCep') || {}).value || '';
+        const end = (document.getElementById('inputEndereco') || {}).value || '';
+        const bairro = (document.getElementById('inputBairro') || {}).value || '';
+        const partes = [end, bairro, cep].filter(Boolean);
+        return partes.join(', ');
+      };
+    });
+  </script>
+
   <!-- JS carregado ao final para garantir que o DOM esteja pronto -->
   <script src="js/app.js"></script>
+
+  <!-- Patches: endereço completo + máscara CEP -->
+  <script>
+    // Máscara automática para CEP: 00000-000
+    document.addEventListener('DOMContentLoaded', function () {
+      var cepInput = document.getElementById('inputCep');
+      if (cepInput) {
+        cepInput.addEventListener('input', function () {
+          var v = this.value.replace(/\D/g, '').slice(0, 8);
+          if (v.length > 5) v = v.slice(0, 5) + '-' + v.slice(5);
+          this.value = v;
+        });
+      }
+    });
+
+    // Sobrescreve enviarWhatsApp para incluir endereço completo
+    window.addEventListener('load', function () {
+      var _originalEnviar = window.enviarWhatsApp;
+    window.enviarWhatsApp = function () {
+      var campoEntrega = document.getElementById('campoBairro');
+      var visivel = campoEntrega && campoEntrega.style.display !== 'none';
+      if (visivel) {
+        var rua    = (document.getElementById('inputRua')    || {}).value || '';
+        var bairro = (document.getElementById('inputBairro') || {}).value || '';
+        var cep    = (document.getElementById('inputCep')    || {}).value || '';
+        if (!rua.trim() && !bairro.trim()) {
+          alert('Por favor, preencha pelo menos a rua/avenida e o bairro para entrega.');
+          return;
+        }
+        var enderecoCompleto = [rua.trim(), bairro.trim(), cep.trim() ? 'CEP ' + cep.trim() : ''].filter(Boolean).join(', ');
+        var campoLegado = document.getElementById('inputBairro');
+        if (campoLegado) campoLegado.value = enderecoCompleto;
+      }
+
+      // Pagamento
+      if (!_pagamentoSelecionado) {
+        alert('Por favor, selecione uma forma de pagamento.');
+        return;
+      }
+      var labelPag = { pix: 'Pix', dinheiro: 'Dinheiro', debito: 'Débito', credito: 'Crédito' };
+      var troco = document.getElementById('inputTroco').value;
+      var infoPag = 'Pagamento: ' + (labelPag[_pagamentoSelecionado] || _pagamentoSelecionado);
+      if (_pagamentoSelecionado === 'dinheiro' && troco) {
+        infoPag += ' (troco para R$ ' + parseFloat(troco).toFixed(2).replace('.', ',') + ')';
+      }
+
+      // Injeta info de pagamento para app.js capturar via observação ou override de mensagem
+      window._infoPagamento = infoPag;
+
+      if (typeof _originalEnviar === 'function') _originalEnviar();
+    };
+
+    // Intercepta window.open para injetar forma de pagamento na mensagem do WhatsApp
+    var _originalOpen = window.open;
+    window.open = function(url, target, features) {
+      if (url && url.includes('wa.me') && window._infoPagamento) {
+        try {
+          var decoded = decodeURIComponent(url);
+          // Injeta antes do último caractere da mensagem (antes do fechamento)
+          var infoLine = '%0A' + encodeURIComponent('💳 ' + window._infoPagamento);
+          // Insere antes do final da URL
+          url = url + infoLine;
+          window._infoPagamento = '';
+        } catch(e) {}
+      }
+      return _originalOpen.call(window, url, target, features);
+    };
+    });
+  </script>
 
 </body>
 </html>
