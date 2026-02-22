@@ -693,6 +693,97 @@
   <!-- JS carregado ao final para garantir que o DOM esteja pronto -->
   <script src="js/app.js"></script>
 
+  <script>
+    // ---- OCULTA BOTÃO FLUTUANTE QUANDO CARRINHO ESTÁ ABERTO ----
+    // Funciona independente do app.js, via MutationObserver na classe do modal
+    document.addEventListener('DOMContentLoaded', function() {
+      var modal = document.getElementById('modalCarrinho');
+      var btn   = document.getElementById('carrinhoBtn');
+      if (!modal || !btn) return;
+
+      new MutationObserver(function() {
+        if (modal.classList.contains('open')) {
+          btn.style.display = 'none';
+        } else {
+          // Restaura só se houver itens (respeita a lógica do app.js)
+          var badge = document.getElementById('carrinhoQtd');
+          if (badge && parseInt(badge.textContent) > 0) {
+            btn.style.display = 'flex';
+          }
+        }
+      }).observe(modal, { attributes: true, attributeFilter: ['class'] });
+    });
+
+    // ---- PAGAMENTO ----
+    var _pagamentoSelecionado = '';
+
+    function selecionarPagamento(tipo, btn) {
+      _pagamentoSelecionado = tipo;
+      document.querySelectorAll('.pagamento-btn').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById('campoTroco').style.display = tipo === 'dinheiro' ? 'block' : 'none';
+      if (tipo !== 'dinheiro') document.getElementById('inputTroco').value = '';
+    }
+
+    // ---- MÁSCARA CEP ----
+    document.addEventListener('DOMContentLoaded', function() {
+      var cepInput = document.getElementById('inputCep');
+      if (cepInput) {
+        cepInput.addEventListener('input', function() {
+          var v = this.value.replace(/\D/g, '').slice(0, 8);
+          if (v.length > 5) v = v.slice(0, 5) + '-' + v.slice(5);
+          this.value = v;
+        });
+      }
+    });
+
+    // ---- PATCH enviarWhatsApp: endereço completo + pagamento ----
+    window.addEventListener('load', function() {
+      var _orig = window.enviarWhatsApp;
+      window.enviarWhatsApp = function() {
+        // Valida endereço se entrega
+        var campoEntrega = document.getElementById('campoBairro');
+        var visivel = campoEntrega && campoEntrega.style.display !== 'none';
+        if (visivel) {
+          var rua    = (document.getElementById('inputRua')    || {}).value || '';
+          var bairro = (document.getElementById('inputBairro') || {}).value || '';
+          var cep    = (document.getElementById('inputCep')    || {}).value || '';
+          if (!rua.trim() && !bairro.trim()) {
+            alert('Por favor, preencha pelo menos a rua/avenida e o bairro para entrega.');
+            return;
+          }
+          // Monta endereço completo no campo que app.js lê
+          var endCompleto = [rua.trim(), bairro.trim(), cep.trim() ? 'CEP ' + cep.trim() : ''].filter(Boolean).join(', ');
+          document.getElementById('inputBairro').value = endCompleto;
+        }
+
+        // Valida pagamento
+        if (!_pagamentoSelecionado) {
+          alert('Por favor, selecione uma forma de pagamento.');
+          return;
+        }
+
+        // Injeta pagamento via override do window.open
+        var labels = { pix: 'Pix', dinheiro: 'Dinheiro', debito: 'Cartão Débito', credito: 'Cartão Crédito' };
+        var infoPag = '💳 Pagamento: ' + labels[_pagamentoSelecionado];
+        var troco = document.getElementById('inputTroco').value;
+        if (_pagamentoSelecionado === 'dinheiro' && troco) {
+          infoPag += ' (troco para R$ ' + parseFloat(troco).toFixed(2).replace('.', ',') + ')';
+        }
+
+        var _openOrig = window.open;
+        window.open = function(url, target, features) {
+          if (url && url.includes('wa.me')) {
+            url += '%0A' + encodeURIComponent(infoPag);
+            window.open = _openOrig; // Restaura imediatamente
+          }
+          return _openOrig.call(window, url, target, features);
+        };
+
+        if (typeof _orig === 'function') _orig();
+      };
+    });
+  </script>
 
 </body>
 </html>
