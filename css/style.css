@@ -645,13 +645,213 @@ main {
 .btn-whatsapp svg   { width: 24px; height: 24px; fill: var(--branco); }
 
 
+/* ================================================
+   12. RESPONSIVO
+   Breakpoints:
+   - xs:  < 360px  (celular muito pequeno)
+   - sm:  < 480px  (celular comum)
+   - md:  601–900px (tablet)
+   - lg:  > 900px  (desktop)
+   ================================================ */
+
+
 /* ------------------------------------------------
-   12. RESPONSIVO — telas menores que 400px
+   XS — celulares muito pequenos (< 360px)
+   Ex: iPhone SE 1ª geração, Galaxy A01
    ------------------------------------------------ */
-@media (max-width: 400px) {
+@media (max-width: 360px) {
+  /* Header */
+  .logo-titulo            { font-size: 28px; }
+  .logo-subtitulo         { font-size: 16px; letter-spacing: 2px; }
+  .logo-img               { width: 70px; height: 70px; }
+  .logo-slogan            { font-size: 9px; }
+
+  /* Chips do header — fonte menor */
+  .info-chip              { font-size: 10px; padding: 4px 8px; }
+
+  /* Nav */
+  .cat-btn                { padding: 10px 12px; font-size: 13px; }
+
+  /* Cards */
+  .produto-nome           { font-size: 13px; }
+  .produto-preco          { font-size: 17px; }
+  .produto-desc           { font-size: 11px; }
+
+  /* Grid bebidas — 1 coluna */
+  .bebidas-grid           { grid-template-columns: 1fr; }
+
+  /* Botão carrinho — não sobe em cima do WhatsApp */
+  .carrinho-btn           { bottom: 84px; font-size: 15px; padding: 12px 20px; }
+
+  /* Modal */
+  .modal-carrinho,
+  .modal-lateral-sobre    { max-height: 92vh; }
+  .tipo-btn               { font-size: 11px; padding: 7px 2px; }
+}
+
+
+/* ------------------------------------------------
+   SM — celulares comuns (360px–480px)
+   Ex: iPhone 12/13, Galaxy S21
+   ------------------------------------------------ */
+@media (max-width: 480px) {
+  /* Header */
   .logo-titulo            { font-size: 34px; }
   .logo-img               { width: 80px; height: 80px; }
-  .bebidas-grid           { grid-template-columns: 1fr; }
+
+  /* Botão carrinho sobe para não sobrepor o WhatsApp */
+  .carrinho-btn           { bottom: 84px; }
+
+  /* Seção título levemente menor */
+  .secao-titulo           { font-size: 22px; letter-spacing: 2px; }
+
+  /* Carrinho item — nome pode quebrar linha */
+  .carrinho-item-nome     { font-size: 13px; }
+}
+
+
+/* ------------------------------------------------
+   MD — tablets (601px–900px)
+   Ex: iPad mini, Galaxy Tab, telas 7"–10"
+   ------------------------------------------------ */
+@media (min-width: 601px) and (max-width: 900px) {
+  /* Aumenta o container central */
+  .header-top,
+  .header-info,
+  .nav-cats-inner,
+  main                    { max-width: 780px; }
+
+  /* Cards em 2 colunas para aproveitar largura */
+  main .secao > .produto-card + .produto-card {
+    /* mantém lista mas com padding maior */
+  }
+
+  /* Grid bebidas — 3 colunas no tablet */
+  .bebidas-grid           { grid-template-columns: 1fr 1fr 1fr; }
+
+  /* Cards de dogs — 2 colunas */
+  .dogs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  /* Header fonte maior */
+  .logo-titulo            { font-size: 52px; }
+  .logo-img               { width: 120px; height: 120px; }
+  .secao-titulo           { font-size: 30px; }
+
+  /* Nav botões maiores */
+  .cat-btn                { padding: 14px 22px; font-size: 17px; }
+
+  /* Botão carrinho */
+  .carrinho-btn           { bottom: 24px; font-size: 19px; padding: 15px 32px; }
+
+  /* Modal mais largo */
+  .modal-carrinho,
+  .modal-lateral-sobre    { max-width: 780px; }
+}
+
+
+/* ------------------------------------------------
+   LG — desktop (> 900px)
+   Ex: notebooks, monitores
+   ------------------------------------------------ */
+@media (min-width: 901px) {
+  /* Layout de 2 colunas: cardápio + sidebar */
+  body                    { background: var(--azul-fundo); }
+
+  /* Container principal mais largo */
+  .header-top,
+  .header-info            { max-width: 960px; }
+
+  .nav-cats-inner         { max-width: 960px; }
+
+  /* Main vira grid com sidebar */
+  main {
+    max-width: 960px;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    grid-template-rows: auto;
+    gap: 0 24px;
+    padding: 24px 16px 60px;
+    align-items: start;
+  }
+
+  /* Todas as seções ficam na coluna da esquerda */
+  main .secao             { grid-column: 1; }
+
+  /* Grid bebidas — 3 colunas no desktop */
+  .bebidas-grid           { grid-template-columns: 1fr 1fr 1fr; }
+
+  /* Dogs em 2 colunas */
+  #dogs .produto-card,
+  #sucos .produto-card {
+    /* lista normal, mais espaço */
+  }
+
+  /* Header maior e mais respeitoso */
+  .logo-titulo            { font-size: 56px; }
+  .logo-img               { width: 130px; height: 130px; }
+  .secao-titulo           { font-size: 32px; }
+  .cat-btn                { font-size: 17px; padding: 14px 24px; }
+
+  /* Produto card hover mais suave */
+  .produto-card:hover     { transform: translateX(5px); }
+
+  /* Botão carrinho — posição melhor no desktop */
+  .carrinho-btn {
+    bottom: 30px;
+    font-size: 20px;
+    padding: 16px 36px;
+  }
+
+  /* Botão WhatsApp fixo */
+  .wpp-fixo {
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+  }
+
+  /* Modal carrinho — fica como sidebar no desktop */
+  .modal-carrinho {
+    left: auto;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    transform: translateX(100%);
+    max-width: 420px;
+    width: 420px;
+    max-height: 100vh;
+    border-radius: 20px 0 0 20px;
+    transition: transform .3s cubic-bezier(.34,1.2,.64,1);
+  }
+
+  .modal-carrinho.open    { transform: translateX(0); }
+
+  /* Modal sobre — centralizado no desktop */
+  .modal-lateral-sobre {
+    bottom: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(.95);
+    max-width: 520px;
+    border-radius: 20px;
+    max-height: 80vh;
+    transition: transform .3s cubic-bezier(.34,1.56,.64,1), opacity .3s;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .modal-lateral-sobre.open {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* Menu lateral mais largo no desktop */
+  .menu-lateral           { width: 360px; right: -380px; }
 }
 
 
