@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,92 +7,50 @@
   <meta name="theme-color" content="#0d2d7a">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Tubarão Dogueria – Cardápio">
+  <meta property="og:title"       content="Tubarão Dogueria – Cardápio">
   <meta property="og:description" content="Prepare-se para o ataque! Os melhores dogs da cidade.">
-  <meta property="og:image" content="img/logo.jpeg">
-  <meta property="og:type" content="website">
+  <meta property="og:image"       content="img/logo.jpeg">
+  <meta property="og:type"        content="website">
 
   <title>Tubarão Dogueria – Cardápio</title>
 
   <!-- Fontes: Bebas Neue (títulos) | Barlow Condensed (labels) | Barlow (corpo) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap"
-    rel="stylesheet">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
   <style>
     /* Endereço completo */
-    .campo-bairro {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .campo-bairro input {
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    #inputCep {
-      max-width: 160px;
-    }
+    .campo-bairro { display: flex; flex-direction: column; gap: 8px; }
+    .campo-bairro input { width: 100%; box-sizing: border-box; }
+    #inputCep { max-width: 160px; }
 
     /* Pagamento */
     .pagamento-titulo {
       font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #555;
-      margin: 12px 0 6px;
+      font-weight: 700; font-size: 0.85rem;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      color: #555; margin: 12px 0 6px;
     }
-
-    .pagamento-opcoes {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-bottom: 8px;
-    }
-
+    .pagamento-opcoes { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
     .pagamento-btn {
-      flex: 1 1 calc(50% - 6px);
-      padding: 9px 6px;
-      border: 2px solid #ddd;
-      border-radius: 10px;
+      flex: 1 1 calc(50% - 6px); padding: 9px 6px;
+      border: 2px solid #ddd; border-radius: 10px;
       background: #f8f8f8;
       font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 600;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: all .15s;
-      color: #333;
-      text-align: center;
+      font-weight: 600; font-size: 0.9rem;
+      cursor: pointer; transition: all .15s; color: #333; text-align: center;
     }
-
-    .pagamento-btn.active {
-      border-color: #0d2d7a;
-      background: #e8edf8;
-      color: #0d2d7a;
-    }
-
+    .pagamento-btn.active { border-color: #0d2d7a; background: #e8edf8; color: #0d2d7a; }
     #campoTroco input {
-      margin-bottom: 8px;
-      padding: 9px 12px;
-      border: 1.5px solid #ddd;
-      border-radius: 10px;
-      font-size: 0.95rem;
-      width: 100%;
-      box-sizing: border-box;
+      margin-bottom: 8px; padding: 9px 12px;
+      border: 1.5px solid #ddd; border-radius: 10px;
+      font-size: 0.95rem; width: 100%; box-sizing: border-box;
     }
   </style>
 </head>
-
 <body>
 
   <!-- ===================== HEADER ===================== -->
@@ -126,10 +83,10 @@
   <nav class="nav-cats" aria-label="Categorias do cardápio">
     <div class="nav-cats-inner">
       <button class="cat-btn active" onclick="scrollToSection('dogs', this)">🌭 Dogs</button>
-      <button class="cat-btn" onclick="scrollToSection('bebidas', this)">🥤 Bebidas</button>
-      <button class="cat-btn" onclick="scrollToSection('sucos', this)">🍹 Sucos</button>
-      <button class="cat-btn" onclick="scrollToSection('adicionais', this)">➕ Adicionais</button>
-      <button class="cat-btn" onclick="abrirSobreLoja()">ℹ️ Sobre</button>
+      <button class="cat-btn"        onclick="scrollToSection('bebidas', this)">🥤 Bebidas</button>
+      <button class="cat-btn"        onclick="scrollToSection('sucos', this)">🍹 Sucos</button>
+      <button class="cat-btn"        onclick="scrollToSection('adicionais', this)">➕ Adicionais</button>
+      <button class="cat-btn"        onclick="abrirSobreLoja()">ℹ️ Sobre</button>
     </div>
     <!-- Botão que abre o menu lateral de produtos -->
     <button class="btn-menu-lateral" onclick="abrirMenuLateral()" aria-label="Menu de produtos">☰</button>
@@ -177,8 +134,7 @@
           <div class="produto-desc">Salsicha, molho, queijo mussarela, milho, calabresa, banana e batata palha</div>
         </div>
         <div class="produto-preco">R$ 14,00</div>
-        <button class="btn-add"
-          onclick="event.stopPropagation(); addItem('Tubarão Calabresa e Banana', 14.00)">+</button>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Tubarão Calabresa e Banana', 14.00)">+</button>
       </div>
 
       <div class="produto-card" id="produtoid-dogs-4" onclick="addItem('Tubarão Bacon', 12.00)">
@@ -202,12 +158,10 @@
       <div class="produto-card" id="produtoid-dogs-6" onclick="addItem('Tubarão Calabresa, Bacon e Banana', 15.00)">
         <div class="produto-info">
           <div class="produto-nome">Tubarão Calabresa, Bacon e Banana</div>
-          <div class="produto-desc">Salsicha, molho, queijo mussarela, milho, calabresa, bacon, banana e batata palha
-          </div>
+          <div class="produto-desc">Salsicha, molho, queijo mussarela, milho, calabresa, bacon, banana e batata palha</div>
         </div>
         <div class="produto-preco">R$ 15,00</div>
-        <button class="btn-add"
-          onclick="event.stopPropagation(); addItem('Tubarão Calabresa, Bacon e Banana', 15.00)">+</button>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Tubarão Calabresa, Bacon e Banana', 15.00)">+</button>
       </div>
 
       <div class="produto-card" id="produtoid-dogs-7" onclick="addItem('Tubarão Carne Desfiada', 12.00)">
@@ -222,32 +176,26 @@
       <div class="produto-card" id="produtoid-dogs-8" onclick="addItem('Tubarão Carne Desfiada e Banana', 14.00)">
         <div class="produto-info">
           <div class="produto-nome">Tubarão Carne Desfiada e Banana</div>
-          <div class="produto-desc">Salsicha, molho, queijo mussarela, milho, carne desfiada, banana e batata palha
-          </div>
+          <div class="produto-desc">Salsicha, molho, queijo mussarela, milho, carne desfiada, banana e batata palha</div>
         </div>
         <div class="produto-preco">R$ 14,00</div>
-        <button class="btn-add"
-          onclick="event.stopPropagation(); addItem('Tubarão Carne Desfiada e Banana', 14.00)">+</button>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Tubarão Carne Desfiada e Banana', 14.00)">+</button>
       </div>
 
-      <div class="produto-card" id="produtoid-dogs-9"
-        onclick="addItem('Tubarão Carne Desfiada, Calabresa e Bacon', 15.00)">
+      <div class="produto-card" id="produtoid-dogs-9" onclick="addItem('Tubarão Carne Desfiada, Calabresa e Bacon', 15.00)">
         <div class="produto-info">
           <div class="produto-nome">Tubarão Carne Desfiada, Calabresa e Bacon</div>
-          <div class="produto-desc">Salsicha, molho, queijo mussarela, milho, carne desfiada, calabresa, bacon e batata
-            palha</div>
+          <div class="produto-desc">Salsicha, molho, queijo mussarela, milho, carne desfiada, calabresa, bacon e batata palha</div>
         </div>
         <div class="produto-preco">R$ 15,00</div>
-        <button class="btn-add"
-          onclick="event.stopPropagation(); addItem('Tubarão Carne Desfiada, Calabresa e Bacon', 15.00)">+</button>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Tubarão Carne Desfiada, Calabresa e Bacon', 15.00)">+</button>
       </div>
 
       <!-- Dogs premium — pão 20cm -->
       <div class="produto-card" id="produtoid-dogs-10" onclick="addItem('Tubarão Blaster', 18.00)">
         <div class="produto-info">
           <div class="produto-nome">⚡ Tubarão Blaster</div>
-          <div class="produto-desc">Pão 20cm, 1½ salsicha, molho, mussarela, milho, bacon, calabresa, catupiry, banana e
-            batata palha</div>
+          <div class="produto-desc">Pão 20cm, 1½ salsicha, molho, mussarela, milho, bacon, calabresa, catupiry, banana e batata palha</div>
         </div>
         <div class="produto-preco destaque">R$ 18,00</div>
         <button class="btn-add" onclick="event.stopPropagation(); addItem('Tubarão Blaster', 18.00)">+</button>
@@ -256,8 +204,7 @@
       <div class="produto-card" id="produtoid-dogs-11" onclick="addItem('Tubarão Branco', 20.00)">
         <div class="produto-info">
           <div class="produto-nome">⚡ Tubarão Branco</div>
-          <div class="produto-desc">Pão 20cm, 1½ salsicha, molho, mussarela, milho, bacon, calabresa, catupiry, banana,
-            peito de frango e batata palha</div>
+          <div class="produto-desc">Pão 20cm, 1½ salsicha, molho, mussarela, milho, bacon, calabresa, catupiry, banana, peito de frango e batata palha</div>
         </div>
         <div class="produto-preco destaque">R$ 20,00</div>
         <button class="btn-add" onclick="event.stopPropagation(); addItem('Tubarão Branco', 20.00)">+</button>
@@ -266,8 +213,7 @@
       <div class="produto-card" id="produtoid-dogs-12" onclick="addItem('Tubarão Megalodon', 20.00)">
         <div class="produto-info">
           <div class="produto-nome">🦈 Tubarão Megalodon</div>
-          <div class="produto-desc">Pão 20cm, 1½ salsicha, molho, mussarela, milho, bacon, calabresa, catupiry, banana,
-            carne desfiada e batata palha</div>
+          <div class="produto-desc">Pão 20cm, 1½ salsicha, molho, mussarela, milho, bacon, calabresa, catupiry, banana, carne desfiada e batata palha</div>
         </div>
         <div class="produto-preco destaque">R$ 20,00</div>
         <button class="btn-add" onclick="event.stopPropagation(); addItem('Tubarão Megalodon', 20.00)">+</button>
@@ -312,8 +258,7 @@
           <div class="produto-nome">Fanta Laranja LS 1L</div>
           <div class="produto-desc">Vidro</div>
           <div class="produto-preco">R$ 8,00</div>
-          <button class="btn-add"
-            onclick="event.stopPropagation(); addItem('Fanta Laranja LS 1L Vidro', 8.00)">+</button>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Fanta Laranja LS 1L Vidro', 8.00)">+</button>
         </div>
 
         <div class="produto-card" onclick="addItem('Coca-Cola PET 1L', 8.00)">
@@ -367,15 +312,13 @@
         <div class="produto-card" onclick="addItem('Fanta Laranja Lata 350ml', 5.00)">
           <div class="produto-nome">Fanta Laranja Lata</div>
           <div class="produto-preco">R$ 5,00</div>
-          <button class="btn-add"
-            onclick="event.stopPropagation(); addItem('Fanta Laranja Lata 350ml', 5.00)">+</button>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Fanta Laranja Lata 350ml', 5.00)">+</button>
         </div>
 
         <div class="produto-card" onclick="addItem('Coca-Cola Zero Lata 350ml', 5.00)">
           <div class="produto-nome">Coca Zero Lata</div>
           <div class="produto-preco">R$ 5,00</div>
-          <button class="btn-add"
-            onclick="event.stopPropagation(); addItem('Coca-Cola Zero Lata 350ml', 5.00)">+</button>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Coca-Cola Zero Lata 350ml', 5.00)">+</button>
         </div>
 
         <div class="produto-card" onclick="addItem('Guaraná Lata 350ml', 5.00)">
@@ -387,8 +330,7 @@
         <div class="produto-card" onclick="addItem('Guaraná Jesus Lata 350ml', 5.00)">
           <div class="produto-nome">Guaraná Jesus Lata</div>
           <div class="produto-preco">R$ 5,00</div>
-          <button class="btn-add"
-            onclick="event.stopPropagation(); addItem('Guaraná Jesus Lata 350ml', 5.00)">+</button>
+          <button class="btn-add" onclick="event.stopPropagation(); addItem('Guaraná Jesus Lata 350ml', 5.00)">+</button>
         </div>
 
         <div class="produto-card" onclick="addItem('Água Tônica Lata 350ml', 5.00)">
@@ -464,8 +406,7 @@
           <div class="produto-desc">Natural</div>
         </div>
         <div class="produto-preco">R$ 8,00</div>
-        <button class="btn-add"
-          onclick="event.stopPropagation(); addItem('Suco de Abacaxi c/ Hortelã 500ml', 8.00)">+</button>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Suco de Abacaxi c/ Hortelã 500ml', 8.00)">+</button>
       </div>
 
       <!-- Jarra 1L -->
@@ -486,8 +427,7 @@
           <div class="produto-desc">Natural · c/ leite R$ 26,00</div>
         </div>
         <div class="produto-preco">R$ 24,00</div>
-        <button class="btn-add"
-          onclick="event.stopPropagation(); addItem('Suco de Maracujá Jarra 1L', 24.00)">+</button>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Suco de Maracujá Jarra 1L', 24.00)">+</button>
       </div>
 
       <div class="produto-card" onclick="addItem('Suco de Goiaba Jarra 1L', 16.00)">
@@ -523,8 +463,7 @@
           <div class="produto-desc">Natural</div>
         </div>
         <div class="produto-preco">R$ 16,00</div>
-        <button class="btn-add"
-          onclick="event.stopPropagation(); addItem('Suco de Abacaxi c/ Hortelã Jarra 1L', 16.00)">+</button>
+        <button class="btn-add" onclick="event.stopPropagation(); addItem('Suco de Abacaxi c/ Hortelã Jarra 1L', 16.00)">+</button>
       </div>
 
     </section>
@@ -579,10 +518,7 @@
 
   <!-- Botão WhatsApp: sempre visível, abre conversa com a loja -->
   <a href="https://wa.me/5569993009408" target="_blank" class="wpp-fixo" aria-label="WhatsApp da loja">
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path
-        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-    </svg>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
 
   <!-- ===================== /FLUTUANTES ===================== -->
@@ -622,9 +558,9 @@
 
       <!-- Campo de endereço: só aparece se tipo = entrega -->
       <div id="campoBairro" class="campo-bairro">
-        <input type="text" id="inputRua" placeholder="Rua / Avenida e número..." />
+        <input type="text" id="inputRua"    placeholder="Rua / Avenida e número..." />
         <input type="text" id="inputBairro" placeholder="Bairro..." />
-        <input type="text" id="inputCep" placeholder="CEP (ex: 76800-000)" maxlength="9" />
+        <input type="text" id="inputCep"    placeholder="CEP (ex: 76800-000)" maxlength="9" />
         <span class="bairro-obs">Taxa de entrega a combinar conforme distância</span>
       </div>
 
@@ -645,10 +581,7 @@
         <span class="total-valor" id="totalValor">R$ 0,00</span>
       </div>
       <button class="btn-whatsapp" onclick="enviarWhatsApp()">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path
-            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-        </svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         ENVIAR PEDIDO
       </button>
     </div>
@@ -700,17 +633,11 @@
         <div class="sobre-titulo">Redes sociais</div>
         <div class="sobre-redes">
           <a href="https://www.facebook.com/share/1FWYtm9rRM/" target="_blank" class="rede-btn facebook">
-            <svg viewBox="0 0 24 24">
-              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
-            </svg>
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
             Facebook
           </a>
           <a href="https://www.instagram.com/tubaraodogueria/" target="_blank" class="rede-btn instagram">
-            <svg viewBox="0 0 24 24">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-              <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
-              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-            </svg>
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
             @tubaraodogueria
           </a>
         </div>
@@ -735,33 +662,22 @@
       <div class="menu-item" onclick="irProduto('produtoid-dogs-0')">Tubarão Tradicional <span>R$ 6,00</span></div>
       <div class="menu-item" onclick="irProduto('produtoid-dogs-1')">Tubarão Duplo <span>R$ 8,00</span></div>
       <div class="menu-item" onclick="irProduto('produtoid-dogs-2')">Tubarão Calabresa <span>R$ 12,00</span></div>
-      <div class="menu-item" onclick="irProduto('produtoid-dogs-3')">Tubarão Calabresa e Banana <span>R$ 14,00</span>
-      </div>
+      <div class="menu-item" onclick="irProduto('produtoid-dogs-3')">Tubarão Calabresa e Banana <span>R$ 14,00</span></div>
       <div class="menu-item" onclick="irProduto('produtoid-dogs-4')">Tubarão Bacon <span>R$ 12,00</span></div>
       <div class="menu-item" onclick="irProduto('produtoid-dogs-5')">Tubarão Bacon e Banana <span>R$ 14,00</span></div>
-      <div class="menu-item" onclick="irProduto('produtoid-dogs-6')">Tubarão Calabresa, Bacon e Banana <span>R$
-          15,00</span></div>
+      <div class="menu-item" onclick="irProduto('produtoid-dogs-6')">Tubarão Calabresa, Bacon e Banana <span>R$ 15,00</span></div>
       <div class="menu-item" onclick="irProduto('produtoid-dogs-7')">Tubarão Carne Desfiada <span>R$ 12,00</span></div>
-      <div class="menu-item" onclick="irProduto('produtoid-dogs-8')">Tubarão Carne Desfiada e Banana <span>R$
-          14,00</span></div>
-      <div class="menu-item" onclick="irProduto('produtoid-dogs-9')">Tubarão Carne Desfiada, Calabresa e Bacon <span>R$
-          15,00</span></div>
-      <div class="menu-item destaque-item" onclick="irProduto('produtoid-dogs-10')">⚡ Tubarão Blaster <span>R$
-          18,00</span></div>
-      <div class="menu-item destaque-item" onclick="irProduto('produtoid-dogs-11')">⚡ Tubarão Branco <span>R$
-          20,00</span></div>
-      <div class="menu-item destaque-item" onclick="irProduto('produtoid-dogs-12')">🦈 Tubarão Megalodon <span>R$
-          20,00</span></div>
+      <div class="menu-item" onclick="irProduto('produtoid-dogs-8')">Tubarão Carne Desfiada e Banana <span>R$ 14,00</span></div>
+      <div class="menu-item" onclick="irProduto('produtoid-dogs-9')">Tubarão Carne Desfiada, Calabresa e Bacon <span>R$ 15,00</span></div>
+      <div class="menu-item destaque-item" onclick="irProduto('produtoid-dogs-10')">⚡ Tubarão Blaster <span>R$ 18,00</span></div>
+      <div class="menu-item destaque-item" onclick="irProduto('produtoid-dogs-11')">⚡ Tubarão Branco <span>R$ 20,00</span></div>
+      <div class="menu-item destaque-item" onclick="irProduto('produtoid-dogs-12')">🦈 Tubarão Megalodon <span>R$ 20,00</span></div>
 
       <div class="menu-cat-titulo">🥤 Bebidas</div>
-      <div class="menu-item"
-        onclick="fecharMenuLateral(); scrollToSection('bebidas', document.querySelector('.cat-btn:nth-child(2)'))">Ver
-        todas as bebidas →</div>
+      <div class="menu-item" onclick="fecharMenuLateral(); scrollToSection('bebidas', document.querySelector('.cat-btn:nth-child(2)'))">Ver todas as bebidas →</div>
 
       <div class="menu-cat-titulo">🍹 Sucos Naturais</div>
-      <div class="menu-item"
-        onclick="fecharMenuLateral(); scrollToSection('sucos', document.querySelector('.cat-btn:nth-child(3)'))">Ver
-        todos os sucos →</div>
+      <div class="menu-item" onclick="fecharMenuLateral(); scrollToSection('sucos', document.querySelector('.cat-btn:nth-child(3)'))">Ver todos os sucos →</div>
 
       <div class="menu-cat-titulo">➕ Adicionais</div>
       <div class="menu-item" onclick="irProduto('produtoid-adic-0')">Cheddar <span>R$ 3,00</span></div>
@@ -778,22 +694,42 @@
   <script src="js/app.js"></script>
 
   <script>
+    // ---- OCULTA BOTÃO FLUTUANTE QUANDO CARRINHO ESTÁ ABERTO ----
+    // Funciona independente do app.js, via MutationObserver na classe do modal
+    document.addEventListener('DOMContentLoaded', function() {
+      var modal = document.getElementById('modalCarrinho');
+      var btn   = document.getElementById('carrinhoBtn');
+      if (!modal || !btn) return;
+
+      new MutationObserver(function() {
+        if (modal.classList.contains('open')) {
+          btn.style.display = 'none';
+        } else {
+          // Restaura só se houver itens (respeita a lógica do app.js)
+          var badge = document.getElementById('carrinhoQtd');
+          if (badge && parseInt(badge.textContent) > 0) {
+            btn.style.display = 'flex';
+          }
+        }
+      }).observe(modal, { attributes: true, attributeFilter: ['class'] });
+    });
+
     // ---- PAGAMENTO ----
     var _pagamentoSelecionado = '';
 
     function selecionarPagamento(tipo, btn) {
       _pagamentoSelecionado = tipo;
-      document.querySelectorAll('.pagamento-btn').forEach(function (b) { b.classList.remove('active'); });
+      document.querySelectorAll('.pagamento-btn').forEach(function(b){ b.classList.remove('active'); });
       btn.classList.add('active');
       document.getElementById('campoTroco').style.display = tipo === 'dinheiro' ? 'block' : 'none';
       if (tipo !== 'dinheiro') document.getElementById('inputTroco').value = '';
     }
 
     // ---- MÁSCARA CEP ----
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
       var cepInput = document.getElementById('inputCep');
       if (cepInput) {
-        cepInput.addEventListener('input', function () {
+        cepInput.addEventListener('input', function() {
           var v = this.value.replace(/\D/g, '').slice(0, 8);
           if (v.length > 5) v = v.slice(0, 5) + '-' + v.slice(5);
           this.value = v;
@@ -802,16 +738,16 @@
     });
 
     // ---- PATCH enviarWhatsApp: endereço completo + pagamento ----
-    window.addEventListener('load', function () {
+    window.addEventListener('load', function() {
       var _orig = window.enviarWhatsApp;
-      window.enviarWhatsApp = function () {
+      window.enviarWhatsApp = function() {
         // Valida endereço se entrega
         var campoEntrega = document.getElementById('campoBairro');
         var visivel = campoEntrega && campoEntrega.style.display !== 'none';
         if (visivel) {
-          var rua = (document.getElementById('inputRua') || {}).value || '';
+          var rua    = (document.getElementById('inputRua')    || {}).value || '';
           var bairro = (document.getElementById('inputBairro') || {}).value || '';
-          var cep = (document.getElementById('inputCep') || {}).value || '';
+          var cep    = (document.getElementById('inputCep')    || {}).value || '';
           if (!rua.trim() && !bairro.trim()) {
             alert('Por favor, preencha pelo menos a rua/avenida e o bairro para entrega.');
             return;
@@ -836,7 +772,7 @@
         }
 
         var _openOrig = window.open;
-        window.open = function (url, target, features) {
+        window.open = function(url, target, features) {
           if (url && url.includes('wa.me')) {
             url += '%0A' + encodeURIComponent(infoPag);
             window.open = _openOrig; // Restaura imediatamente
@@ -850,5 +786,4 @@
   </script>
 
 </body>
-
 </html>
