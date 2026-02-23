@@ -38,6 +38,14 @@ const LOJA = {
    ============================================================ */
 let carrinho = [];
 
+/**
+ * Grava o estado atual do carrinho no localStorage.
+ * Chamada sempre que o array carrinho é modificado.
+ */
+function salvarCarrinho() {
+  localStorage.setItem('tubarao_carrinho', JSON.stringify(carrinho));
+}
+
 
 /* ============================================================
    3. FUNÇÕES DO CARRINHO
@@ -73,6 +81,7 @@ function addItem(nome, preco) {
   }
 
   atualizarCarrinho();
+  salvarCarrinho();
 
   // Feedback visual: pisca o botão e inicia pulso de atenção
   const btn = document.getElementById('carrinhoBtn');
@@ -102,7 +111,8 @@ function removeItem(nome) {
   }
 
   atualizarCarrinho();
-  renderizarModal();             // Atualiza o modal em tempo real
+  salvarCarrinho();
+  renderizarModal();
 }
 
 /**
@@ -216,10 +226,48 @@ function fecharCarrinho() {
    ============================================================ */
 
 /**
+ * Retorna true se a loja estiver aberta agora (fuso Porto Velho).
+ */
+function lojaEstaAberta() {
+  const agora = new Date();
+
+  const partes = new Intl.DateTimeFormat('pt-BR', {
+    timeZone: 'America/Porto_Velho',
+    hour: 'numeric',
+    hour12: false
+  }).formatToParts(agora);
+  const hora = parseInt(partes.find(p => p.type === 'hour').value, 10);
+
+  const diaStr = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/Porto_Velho',
+    weekday: 'short'
+  }).format(agora);
+  const mapasDia = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+  const dia = mapasDia[diaStr];
+
+  return LOJA.horario.diasAbertos.includes(dia) &&
+         hora >= LOJA.horario.abreHora &&
+         hora < LOJA.horario.fechaHora;
+}
+
+/**
  * Gera a mensagem do pedido e abre o WhatsApp.
  */
 function enviarWhatsApp() {
   if (carrinho.length === 0) return;
+
+  // Bloqueia o envio se a loja estiver fechada
+  if (!lojaEstaAberta()) {
+    alert('⚠️ A loja está fechada no momento.\nFuncionamos de Segunda a Sábado, das 18h às 23h.\n\nMonte seu pedido e envie quando abrirmos! 🦈');
+    return;
+  }
+
+  // Valida nome do cliente (obrigatório)
+  const nomeClienteValidar = document.getElementById('inputNome')?.value?.trim() || '';
+  if (!nomeClienteValidar) {
+    alert('Por favor, informe seu nome para realizarmos o pedido.');
+    return;
+  }
 
   // Valida endereço se for entrega
   if (tipoPedido === 'entrega') {
@@ -238,9 +286,13 @@ function enviarWhatsApp() {
   }
 
   let mensagem = `*${LOJA.nome} - Novo Pedido*\n\n`;
+
+  // Nome do cliente
+  const nomeCliente = document.getElementById('inputNome')?.value?.trim() || '';
+  if (nomeCliente) mensagem += `👤 *Cliente:* ${nomeCliente}\n\n`;
+
   let total = 0;
 
-  // Lista cada item com quantidade e subtotal
   carrinho.forEach(item => {
     const sub = item.preco * item.qtd;
     total += sub;
@@ -249,11 +301,9 @@ function enviarWhatsApp() {
 
   mensagem += `\n*Total: R$ ${total.toFixed(2).replace('.', ',')}*`;
 
-  // Tipo de pedido
   const tipos = { entrega: 'Entrega', retirada: 'Retirada no local', local: 'Comer no local' };
   mensagem += `\n\nTipo: ${tipos[tipoPedido] || 'Entrega'}`;
 
-  // Endereço completo
   if (tipoPedido === 'entrega') {
     const rua = document.getElementById('inputRua')?.value?.trim() || '';
     const bairro = document.getElementById('inputBairro')?.value?.trim() || '';
@@ -262,7 +312,6 @@ function enviarWhatsApp() {
     mensagem += `\nEndereço: ${partes.join(', ') || '(não informado)'}`;
   }
 
-  // Forma de pagamento
   const labelsPag = { pix: 'Pix', dinheiro: 'Dinheiro', debito: 'Cartão Débito', credito: 'Cartão Crédito' };
   mensagem += `\n\n💳 Pagamento: ${labelsPag[pagamentoSelecionado] || pagamentoSelecionado}`;
 
@@ -271,9 +320,17 @@ function enviarWhatsApp() {
     if (troco) mensagem += ` (troco para R$ ${parseFloat(troco).toFixed(2).replace('.', ',')})`;
   }
 
-  // Codifica a mensagem para URL e abre o WhatsApp
+  const obs = document.getElementById('inputObservacoes')?.value?.trim() || '';
+  if (obs) mensagem += `\n\n📝 *Observações:* ${obs}`;
+
   const url = `https://wa.me/${LOJA.telefone}?text=${encodeURIComponent(mensagem)}`;
   window.open(url, '_blank');
+
+  // Limpa o carrinho após envio bem-sucedido
+  carrinho = [];
+  salvarCarrinho();
+  atualizarCarrinho();
+  fecharCarrinho();
 }
 
 
@@ -289,10 +346,22 @@ function enviarWhatsApp() {
  */
 function verificarStatus() {
   const agora = new Date();
-  const dia = agora.getDay();
-  const hora = agora.getHours();
-  const badge = document.getElementById('statusBadge');
 
+  const partes = new Intl.DateTimeFormat('pt-BR', {
+    timeZone: 'America/Porto_Velho',
+    hour: 'numeric',
+    hour12: false
+  }).formatToParts(agora);
+  const hora = parseInt(partes.find(p => p.type === 'hour').value, 10);
+
+  const diaStr = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/Porto_Velho',
+    weekday: 'short'
+  }).format(agora);
+  const mapasDia = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+  const dia = mapasDia[diaStr];
+
+  const badge = document.getElementById('statusBadge');
   const diaAberto = LOJA.horario.diasAbertos.includes(dia);
   const horaAberto = hora >= LOJA.horario.abreHora && hora < LOJA.horario.fechaHora;
   const aberto = diaAberto && horaAberto;
@@ -300,12 +369,26 @@ function verificarStatus() {
   if (aberto) {
     badge.className = 'status-badge aberto';
     badge.innerHTML = '<span class="status-dot"></span>ABERTO AGORA';
-  } else {
-    // Define próximo dia de abertura para a mensagem
-    const proximoDia = dia === 0 ? 'segunda' : 'hoje';
-    badge.className = 'status-badge fechado';
-    badge.innerHTML = `<span class="status-dot"></span>FECHADO · Abre ${proximoDia} às ${LOJA.horario.abreHora}h`;
+    return;
   }
+
+  const nomesDia = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
+  let proximoDia = '';
+
+  if (diaAberto && hora < LOJA.horario.abreHora) {
+    proximoDia = 'hoje';
+  } else {
+    for (let i = 1; i <= 7; i++) {
+      const proximoDiaNum = (dia + i) % 7;
+      if (LOJA.horario.diasAbertos.includes(proximoDiaNum)) {
+        proximoDia = i === 1 ? 'amanhã' : nomesDia[proximoDiaNum];
+        break;
+      }
+    }
+  }
+
+  badge.className = 'status-badge fechado';
+  badge.innerHTML = `<span class="status-dot"></span>FECHADO · Abre ${proximoDia} às ${LOJA.horario.abreHora}h`;
 }
 
 
@@ -377,6 +460,13 @@ function iniciarObservadorScroll() {
    ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
 
+  // Recupera o carrinho salvo no localStorage (se existir)
+  const carrinhoSalvo = localStorage.getItem('tubarao_carrinho');
+  if (carrinhoSalvo) {
+    carrinho = JSON.parse(carrinhoSalvo);
+    atualizarCarrinho();
+  }
+
   // Verifica o status da loja (aberto/fechado)
   verificarStatus();
 
@@ -395,6 +485,32 @@ document.addEventListener('DOMContentLoaded', () => {
       let v = this.value.replace(/\D/g, '').slice(0, 8);
       if (v.length > 5) v = v.slice(0, 5) + '-' + v.slice(5);
       this.value = v;
+    });
+  }
+
+  // ── FASE 2 Item 6: Swipe down para fechar modal do carrinho ──
+  const modal = document.getElementById('modalCarrinho');
+  let touchStartY = 0;
+
+  modal.addEventListener('touchstart', e => {
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  modal.addEventListener('touchend', e => {
+    const diff = e.changedTouches[0].clientY - touchStartY;
+    if (diff > 80) fecharCarrinho(); // Swipe down de 80px fecha o modal
+  }, { passive: true });
+
+  // ── FASE 2 Item 6: Botão do carrinho sobe quando teclado abre ──
+  // Detecta redução da viewport (teclado virtual) e reposiciona o botão
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', () => {
+      const btn = document.getElementById('carrinhoBtn');
+      if (!btn) return;
+      const offset = window.innerHeight - window.visualViewport.height;
+      btn.style.bottom = offset > 100
+        ? `${offset + 16}px`  // Teclado aberto: sobe o botão
+        : '24px';             // Teclado fechado: posição original
     });
   }
 });

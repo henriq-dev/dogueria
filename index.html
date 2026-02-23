@@ -25,8 +25,43 @@
     href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap"
     rel="stylesheet">
 
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/estilo.css">
   <style>
+    /* Nome do cliente */
+    .campo-nome input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px 12px;
+      border: 1.5px solid #ddd;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-family: 'Barlow', sans-serif;
+      margin-bottom: 10px;
+    }
+
+    .campo-nome input:focus {
+      outline: none;
+      border-color: #0d2d7a;
+    }
+
+    /* Observações */
+    #inputObservacoes {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px 12px;
+      border: 1.5px solid #ddd;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-family: 'Barlow', sans-serif;
+      resize: none;
+      margin-bottom: 10px;
+    }
+
+    #inputObservacoes:focus {
+      outline: none;
+      border-color: #0d2d7a;
+    }
+
     /* Endereço completo */
     .campo-bairro {
       display: flex;
@@ -613,6 +648,11 @@
     <!-- Rodapé: visível somente com itens no carrinho -->
     <div class="modal-footer" id="modalFooter" style="display: none;">
 
+      <!-- Nome do cliente (obrigatório) -->
+      <div class="campo-nome">
+        <input type="text" id="inputNome" placeholder="Seu nome *" maxlength="50" autocomplete="given-name" />
+      </div>
+
       <!-- Campo de tipo de pedido -->
       <div class="tipo-pedido">
         <button class="tipo-btn active" onclick="selecionarTipo('entrega', this)">🛵 Entrega</button>
@@ -639,6 +679,9 @@
       <div id="campoTroco" style="display:none;">
         <input type="number" id="inputTroco" placeholder="Troco para quanto? (R$)" min="0" step="0.01" />
       </div>
+
+      <!-- Observações gerais do pedido -->
+      <textarea id="inputObservacoes" placeholder="Observações... (ex: sem cebola, maionese à parte)" maxlength="200" rows="2"></textarea>
 
       <div class="total-linha">
         <span class="total-label">Total do pedido</span>
