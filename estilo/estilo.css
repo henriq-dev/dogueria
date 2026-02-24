@@ -282,7 +282,7 @@ main {
   max-width: 600px;
   margin: 0 auto;
   padding: 16px 12px 100px;
-   box-shadow: inset 0px 1px 20px 0px rgb(0, 0, 0);
+  box-shadow: inset 0px 1px 20px 0px rgb(0, 0, 0);
 }
 
 .secao {
@@ -1376,29 +1376,29 @@ main {
    Para trocar tema: edite só este bloco.
    ------------------------------------------------ */
 
-   footer {
-    font-family: var(--fonte-condensada);
-        box-shadow: inset 0px 1px 20px 0px rgb(0, 0, 0);
-    height: 50px;
-    padding: 5px;
-    margin-top: 0.3px;
-    margin-bottom: px;
-    background-color: #0000005e;
-    color: #ffffff;
-    text-align: center;
-   }
+footer {
+  font-family: var(--fonte-condensada);
+  box-shadow: inset 0px 1px 20px 0px rgb(0, 0, 0);
+  height: 50px;
+  padding: 5px;
+  margin-top: 0.3px;
+  margin-bottom: px;
+  background-color: #0000005e;
+  color: #ffffff;
+  text-align: center;
+}
 
-   /* Link normal */
+/* Link normal */
 footer a {
-  background-color: #0312367c;
-  color: rgb(102, 102, 172);
+
+  color: rgb(255, 255, 255);
   text-decoration: none;
-  transition: all 0.6s ease; /* Suaviza a transição */
+  transition: all 0.6s ease;
+  /* Suaviza a transição */
 }
 
 /* Link ao passar o mouse (Hover) */
 footer a:hover {
   border-radius: 2px;
-  background-color: #000000;
-  color: rgb(255, 230, 0);
+  color: rgb(255, 238, 0);
 }

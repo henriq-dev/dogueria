@@ -246,8 +246,8 @@ function lojaEstaAberta() {
   const dia = mapasDia[diaStr];
 
   return LOJA.horario.diasAbertos.includes(dia) &&
-         hora >= LOJA.horario.abreHora &&
-         hora < LOJA.horario.fechaHora;
+    hora >= LOJA.horario.abreHora &&
+    hora < LOJA.horario.fechaHora;
 }
 
 /**
