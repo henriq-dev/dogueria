@@ -660,6 +660,7 @@ main {
 .modal-body {
   overflow-y: auto;
   flex: 1;
+  min-height: 80px;
   padding: 12px 20px;
 }
 
@@ -727,6 +728,9 @@ main {
   padding: 16px 20px;
   border-top: 1px solid #eee;
   background: var(--branco);
+  overflow-y: auto;
+  max-height: 60vh;
+  flex-shrink: 0;
 }
 
 .total-linha {
@@ -1397,19 +1401,4 @@ footer a:hover {
   border-radius: 2px;
   background-color: #000000;
   color: rgb(255, 230, 0);
-}
-
-/* ── FASE 2: Swipe handle mais visível no modal ── */
-.modal-handle {
-  width: 40px;
-  height: 4px;
-  background: #ddd;
-  border-radius: 2px;
-  margin: 10px auto 6px;
-  cursor: grab;
-}
-
-/* ── FASE 2: Transição suave do botão carrinho ao subir com teclado ── */
-#carrinhoBtn {
-  transition: bottom 0.2s ease;
 }
