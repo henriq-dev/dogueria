@@ -33,15 +33,44 @@
 }
 
 :root {
-  /* Cores */
+  /* Cores da marca (imutáveis) */
   --azul: #1a4fc4;
   --azul-escuro: #0d2d7a;
   --azul-fundo: #0e1f5e;
   --amarelo: #f5d800;
   --verde: #16a34a;
   --vermelho: #dc2626;
-  --branco: #ffffff;
-  --cinza-texto: #666666;
+
+  /* Cores semânticas — sobrescritas no dark mode */
+  --bg-page: #0e1f5e;
+  --bg-card: #ffffff;
+  --bg-modal: #ffffff;
+  --bg-modal-footer: #ffffff;
+  --bg-input: #ffffff;
+  --bg-tipo-btn: #f9f9f9;
+  --bg-pagamento-btn: #f8f8f8;
+  --bg-qtd-ctrl: #f5f5f5;
+  --bg-menu-lateral: #ffffff;
+  --bg-menu-item-hover: #f0f4ff;
+
+  --texto-primario: #111111;
+  --texto-secundario: #444444;
+  --texto-terciario: #666666;
+  --texto-placeholder: #999999;
+  --texto-menu-item: #222222;
+  --texto-pagamento: #333333;
+
+  --borda-suave: #eeeeee;
+  --borda-input: #dddddd;
+  --borda-tipo-btn: #e0e0e0;
+  --borda-item-carrinho: #f0f0f0;
+  --borda-sobre-bloco: #f0f0f0;
+  --borda-menu-item: #f5f5f5;
+
+  --handle-cor: #dddddd;
+  --btn-fechar-cor: #888888;
+  --carrinho-vazio-cor: #aaaaaa;
+  --separador-cor: rgba(255,255,255,.5);
 
   /* Tipografia */
   --fonte-titulo: 'Germania One', serif;
@@ -60,6 +89,46 @@
   --sombra-float: 0 6px 24px rgba(0, 0, 0, .35);
 }
 
+/* ============================================================
+   DARK MODE — ativado automaticamente pelo sistema do usuário
+   ============================================================ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-page: #0a0f1e;
+    --bg-card: #1a2235;
+    --bg-modal: #141c2e;
+    --bg-modal-footer: #141c2e;
+    --bg-input: #1e2a40;
+    --bg-tipo-btn: #1e2a40;
+    --bg-pagamento-btn: #1e2a40;
+    --bg-qtd-ctrl: #1e2a40;
+    --bg-menu-lateral: #141c2e;
+    --bg-menu-item-hover: #1e2a40;
+
+    --texto-primario: #f0f4ff;
+    --texto-secundario: #c0ccee;
+    --texto-terciario: #8899bb;
+    --texto-placeholder: #6677aa;
+    --texto-menu-item: #d0dcf0;
+    --texto-pagamento: #c0ccee;
+
+    --borda-suave: #2a3550;
+    --borda-input: #2a3550;
+    --borda-tipo-btn: #2a3550;
+    --borda-item-carrinho: #2a3550;
+    --borda-sobre-bloco: #2a3550;
+    --borda-menu-item: #2a3550;
+
+    --handle-cor: #3a4a66;
+    --btn-fechar-cor: #6677aa;
+    --carrinho-vazio-cor: #6677aa;
+    --separador-cor: rgba(255,255,255,.3);
+
+    --sombra: 0 4px 20px rgba(0, 0, 0, .5);
+    --sombra-hover: 0 6px 24px rgba(0, 0, 0, .6);
+  }
+}
+
 
 /* ------------------------------------------------
    2. RESET & BASE
@@ -72,8 +141,8 @@
 
 body {
   font-family: var(--fonte-corpo);
-  background: var(--azul-fundo);
-  color: #111;
+  background: var(--bg-page);
+  color: var(--texto-primario);
   min-height: 100vh;
 }
 
@@ -321,7 +390,7 @@ main {
    6. CARDS DE PRODUTO
    ------------------------------------------------ */
 .produto-card {
-  background: var(--branco);
+  background: var(--bg-card);
   border-radius: var(--radius);
   padding: 14px 16px;
   margin-bottom: 8px;
@@ -349,7 +418,7 @@ main {
   font-family: var(--fonte-condensada);
   font-weight: 700;
   font-size: 15px;
-  color: #111;
+  color: var(--texto-primario);
   text-transform: uppercase;
   letter-spacing: .3px;
   margin-bottom: 3px;
@@ -357,7 +426,7 @@ main {
 
 .produto-desc {
   font-size: 12px;
-  color: var(--cinza-texto);
+  color: var(--texto-terciario);
   line-height: 1.4;
 }
 
@@ -613,7 +682,7 @@ main {
   transform: translateX(-50%) translateY(100%);
   width: 100%;
   max-width: 600px;
-  background: var(--branco);
+  background: var(--bg-modal);
   border-radius: 20px 20px 0 0;
   z-index: 400;
   max-height: 85vh;
@@ -629,14 +698,14 @@ main {
 .modal-handle {
   width: 40px;
   height: 4px;
-  background: #ddd;
+  background: var(--handle-cor);
   border-radius: 2px;
   margin: 12px auto 0;
 }
 
 .modal-header {
   padding: 16px 20px 12px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--borda-suave);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -654,7 +723,7 @@ main {
   border: none;
   font-size: 22px;
   cursor: pointer;
-  color: #888;
+  color: var(--btn-fechar-cor);
 }
 
 .modal-body {
@@ -667,7 +736,7 @@ main {
 .carrinho-vazio {
   text-align: center;
   padding: 40px 20px;
-  color: #aaa;
+  color: var(--carrinho-vazio-cor);
   font-family: var(--fonte-condensada);
   font-size: 16px;
 }
@@ -678,7 +747,7 @@ main {
   align-items: center;
   gap: 12px;
   padding: 12px 0;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--borda-item-carrinho);
 }
 
 .carrinho-item-nome {
@@ -687,6 +756,7 @@ main {
   font-weight: 700;
   font-size: 14px;
   text-transform: uppercase;
+  color: var(--texto-primario);
 }
 
 .carrinho-item-preco {
@@ -701,7 +771,7 @@ main {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: #f5f5f5;
+  background: var(--bg-qtd-ctrl);
   border-radius: var(--radius-pill);
   padding: 4px 10px;
 }
@@ -721,13 +791,14 @@ main {
   font-size: 16px;
   min-width: 18px;
   text-align: center;
+  color: var(--texto-primario);
 }
 
 /* Rodapé do modal */
 .modal-footer {
   padding: 16px 20px;
-  border-top: 1px solid #eee;
-  background: var(--branco);
+  border-top: 1px solid var(--borda-suave);
+  background: var(--bg-modal-footer);
   overflow-y: auto;
   max-height: 60vh;
   flex-shrink: 0;
@@ -744,7 +815,7 @@ main {
   font-family: var(--fonte-condensada);
   font-weight: 700;
   font-size: 16px;
-  color: #444;
+  color: var(--texto-secundario);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -975,7 +1046,7 @@ main {
 
   /* Layout de 2 colunas: cardápio + sidebar */
   body {
-    background: var(--azul-fundo);
+    background: var(--bg-page);
   }
 
   /* Container principal mais largo */
@@ -1138,16 +1209,16 @@ main {
 .tipo-btn {
   flex: 1;
   padding: 8px 4px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--borda-tipo-btn);
   border-radius: var(--radius-sm);
-  background: #f9f9f9;
+  background: var(--bg-tipo-btn);
   font-family: var(--fonte-condensada);
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   transition: all .2s;
   text-align: center;
-  color: #555;
+  color: var(--texto-terciario);
 }
 
 .tipo-btn.active {
@@ -1164,13 +1235,15 @@ main {
 .campo-bairro input {
   width: 100%;
   padding: 10px 14px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--borda-tipo-btn);
   border-radius: var(--radius-sm);
   font-family: var(--fonte-corpo);
   font-size: 14px;
   outline: none;
   transition: border-color .2s;
   margin-bottom: 4px;
+  background: var(--bg-input);
+  color: var(--texto-primario);
 }
 
 .campo-bairro input:focus {
@@ -1179,7 +1252,7 @@ main {
 
 .bairro-obs {
   font-size: 11px;
-  color: #999;
+  color: var(--texto-placeholder);
   font-family: var(--fonte-corpo);
 }
 
@@ -1194,7 +1267,7 @@ main {
   transform: translateX(-50%) translateY(100%);
   width: 100%;
   max-width: 600px;
-  background: var(--branco);
+  background: var(--bg-modal);
   border-radius: 20px 20px 0 0;
   z-index: 400;
   max-height: 85vh;
@@ -1209,7 +1282,7 @@ main {
 
 .sobre-bloco {
   padding: 14px 0;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--borda-sobre-bloco);
 }
 
 .sobre-titulo {
@@ -1218,13 +1291,13 @@ main {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  color: #999;
+  color: var(--texto-placeholder);
   margin-bottom: 6px;
 }
 
 .sobre-texto {
   font-size: 14px;
-  color: #222;
+  color: var(--texto-primario);
   font-family: var(--fonte-corpo);
 }
 
@@ -1236,7 +1309,7 @@ main {
 
 .sobre-opcao {
   font-size: 14px;
-  color: #333;
+  color: var(--texto-secundario);
   font-family: var(--fonte-corpo);
 }
 
@@ -1295,7 +1368,7 @@ main {
   right: -320px;
   width: 300px;
   height: 100vh;
-  background: var(--branco);
+  background: var(--bg-menu-lateral);
   z-index: 500;
   display: flex;
   flex-direction: column;
@@ -1347,15 +1420,15 @@ main {
   font-family: var(--fonte-condensada);
   font-size: 13px;
   font-weight: 600;
-  color: #222;
+  color: var(--texto-menu-item);
   cursor: pointer;
-  border-bottom: 1px solid #f5f5f5;
+  border-bottom: 1px solid var(--borda-menu-item);
   transition: background .15s;
   text-transform: uppercase;
 }
 
 .menu-item:hover {
-  background: #f0f4ff;
+  background: var(--bg-menu-item-hover);
 }
 
 .menu-item span {
@@ -1412,16 +1485,18 @@ footer a:hover {
   width: 100%;
   box-sizing: border-box;
   padding: 10px 12px;
-  border: 1.5px solid #ddd;
+  border: 1.5px solid var(--borda-input);
   border-radius: 10px;
   font-size: 0.95rem;
   font-family: 'Barlow', sans-serif;
   margin-bottom: 10px;
+  background: var(--bg-input);
+  color: var(--texto-primario);
 }
 
 .campo-nome input:focus {
   outline: none;
-  border-color: #0d2d7a;
+  border-color: var(--azul-escuro);
 }
 
 /* Observações */
@@ -1429,17 +1504,19 @@ footer a:hover {
   width: 100%;
   box-sizing: border-box;
   padding: 10px 12px;
-  border: 1.5px solid #ddd;
+  border: 1.5px solid var(--borda-input);
   border-radius: 10px;
   font-size: 0.9rem;
   font-family: 'Barlow', sans-serif;
   resize: none;
   margin-bottom: 10px;
+  background: var(--bg-input);
+  color: var(--texto-primario);
 }
 
 #inputObservacoes:focus {
   outline: none;
-  border-color: #0d2d7a;
+  border-color: var(--azul-escuro);
 }
 
 /* Endereço */
@@ -1465,7 +1542,7 @@ footer a:hover {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #555;
+  color: var(--texto-terciario);
   margin: 12px 0 6px;
 }
 
@@ -1479,32 +1556,34 @@ footer a:hover {
 .pagamento-btn {
   flex: 1 1 calc(50% - 6px);
   padding: 9px 6px;
-  border: 2px solid #ddd;
+  border: 2px solid var(--borda-input);
   border-radius: 10px;
-  background: #f8f8f8;
+  background: var(--bg-pagamento-btn);
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
   cursor: pointer;
   transition: all .15s;
-  color: #333;
+  color: var(--texto-pagamento);
   text-align: center;
 }
 
 .pagamento-btn.active {
-  border-color: #0d2d7a;
-  background: #e8edf8;
-  color: #0d2d7a;
+  border-color: var(--azul-escuro);
+  background: var(--bg-input);
+  color: var(--azul);
 }
 
 #campoTroco input {
   margin-bottom: 8px;
   padding: 9px 12px;
-  border: 1.5px solid #ddd;
+  border: 1.5px solid var(--borda-input);
   border-radius: 10px;
   font-size: 0.95rem;
   width: 100%;
   box-sizing: border-box;
+  background: var(--bg-input);
+  color: var(--texto-primario);
 }
 
 /* ============================================================
