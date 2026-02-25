@@ -83,9 +83,9 @@
   <!-- ===================== FLUTUANTES ===================== -->
 
   <!-- Botão carrinho: aparece ao adicionar itens, gerenciado por atualizarCarrinho() -->
-  <button class="carrinho-btn" id="carrinhoBtn" onclick="abrirCarrinho()">
+  <button class="carrinho-btn" id="carrinhoBtn" onclick="abrirCarrinho()" aria-label="Ver pedido">
     🛒 VER PEDIDO
-    <span class="carrinho-badge" id="carrinhoQtd">0</span>
+    <span class="carrinho-badge" id="carrinhoQtd" aria-live="polite" aria-label="itens no carrinho">0</span>
   </button>
 
   <!-- Botão WhatsApp: sempre visível, abre conversa com a loja -->
@@ -105,7 +105,7 @@
   <div class="overlay" id="overlay" onclick="fecharCarrinho()"></div>
 
   <!-- Modal carrinho (bottom sheet) -->
-  <div class="modal-carrinho" id="modalCarrinho" role="dialog" aria-label="Carrinho">
+  <div class="modal-carrinho" id="modalCarrinho" role="dialog" aria-label="Carrinho" aria-modal="true" tabindex="-1">
 
     <div class="modal-handle"></div>
 
@@ -183,7 +183,7 @@
     <div class="modal-handle"></div>
     <div class="modal-header">
       <div class="modal-titulo">🦈 Sobre a Loja</div>
-      <button class="btn-fechar" onclick="fecharSobreLoja()">✕</button>
+      <button class="btn-fechar" onclick="fecharSobreLoja()" aria-label="Fechar">✕</button>
     </div>
     <div class="modal-body">
 
@@ -246,7 +246,7 @@
   <div class="menu-lateral" id="menuLateral">
     <div class="menu-lateral-header">
       <div class="modal-titulo">📋 Produtos</div>
-      <button class="btn-fechar" onclick="fecharMenuLateral()">✕</button>
+      <button class="btn-fechar" onclick="fecharMenuLateral()" aria-label="Fechar">✕</button>
     </div>
     <!-- Conteúdo gerado dinamicamente por renderizarMenuLateral() em app.js -->
     <div class="menu-lateral-body"></div>

@@ -230,9 +230,9 @@ function renderizarModal() {
 
         <!-- Controle de quantidade: decrementar / exibir / incrementar -->
         <div class="qtd-ctrl">
-          <button onclick="removeItem('${nomeEscapado}')">−</button>
-          <span>${item.qtd}</span>
-          <button onclick="addItem('${nomeEscapado}', ${item.preco})">+</button>
+          <button onclick="removeItem('${nomeEscapado}')" aria-label="Remover ${item.nome}">−</button>
+          <span aria-label="Quantidade: ${item.qtd}">${item.qtd}</span>
+          <button onclick="addItem('${nomeEscapado}', ${item.preco})" aria-label="Adicionar mais ${item.nome}">+</button>
         </div>
 
         <div class="carrinho-item-preco">
@@ -261,9 +261,12 @@ function renderizarModal() {
 function abrirCarrinho() {
   renderizarModal();
   document.getElementById('overlay').classList.add('open');
-  document.getElementById('modalCarrinho').classList.add('open');
+  const modal = document.getElementById('modalCarrinho');
+  modal.classList.add('open');
   document.body.style.overflow = 'hidden';
-  document.getElementById('carrinhoBtn').style.display = 'none'; // Esconde botão flutuante
+  document.getElementById('carrinhoBtn').style.display = 'none';
+  // Foco no modal para leitores de tela
+  setTimeout(() => modal.focus(), 100);
 }
 
 /**
@@ -529,24 +532,25 @@ function nomeFmt(p) {
 function cardDog(p) {
   const n = p.nome.replace(/'/g, "\\'");
   return `
-    <div class="produto-card" id="produtoid-${p.id}" onclick="addItem('${n}', ${p.preco})">
+    <div class="produto-card" id="produtoid-${p.id}" onclick="addItem('${n}', ${p.preco})" role="button" tabindex="0" aria-label="Adicionar ${nomeFmt(p)} ao carrinho — ${precoFmt(p.preco)}">
       <div class="produto-info">
         <div class="produto-nome">${nomeFmt(p)}</div>
         ${p.desc ? `<div class="produto-desc">${p.desc}</div>` : ''}
       </div>
-      <div class="produto-preco${p.destaque ? ' destaque' : ''}">${precoFmt(p.preco)}</div>
-      <button class="btn-add" onclick="event.stopPropagation(); addItem('${n}', ${p.preco})">+</button>
+      <div class="produto-preco${p.destaque ? ' destaque' : ''}" aria-hidden="true">${precoFmt(p.preco)}</div>
+      <button class="btn-add" onclick="event.stopPropagation(); addItem('${n}', ${p.preco})" aria-label="Adicionar ${nomeFmt(p)}">+</button>
     </div>`;
 }
 
 function cardGrid(p) {
   const n = p.nome.replace(/'/g, "\\'");
+  const label = p.label || p.nome;
   return `
-    <div class="produto-card" id="produtoid-${p.id}" onclick="addItem('${n}', ${p.preco})">
-      ${p.label ? `<div class="produto-nome">${p.label}</div>` : `<div class="produto-nome">${p.nome}</div>`}
+    <div class="produto-card" id="produtoid-${p.id}" onclick="addItem('${n}', ${p.preco})" role="button" tabindex="0" aria-label="Adicionar ${label} ao carrinho — ${precoFmt(p.preco)}">
+      <div class="produto-nome">${label}</div>
       ${p.desc ? `<div class="produto-desc">${p.desc}</div>` : ''}
-      <div class="produto-preco">${precoFmt(p.preco)}</div>
-      <button class="btn-add" onclick="event.stopPropagation(); addItem('${n}', ${p.preco})">+</button>
+      <div class="produto-preco" aria-hidden="true">${precoFmt(p.preco)}</div>
+      <button class="btn-add" onclick="event.stopPropagation(); addItem('${n}', ${p.preco})" aria-label="Adicionar ${label}">+</button>
     </div>`;
 }
 
@@ -636,6 +640,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Ativa o observador de scroll para a nav de categorias
   iniciarObservadorScroll();
+
+  // Suporte a teclado nos cards de produto (Enter/Space = adicionar ao carrinho)
+  document.querySelector('main').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      const card = e.target.closest('[role="button"]');
+      if (card) {
+        e.preventDefault();
+        card.click();
+      }
+    }
+  });
 
   console.log('🦈 Tubarão Dogueria — cardápio iniciado!');
 

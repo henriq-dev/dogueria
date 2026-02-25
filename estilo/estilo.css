@@ -1506,3 +1506,41 @@ footer a:hover {
   width: 100%;
   box-sizing: border-box;
 }
+
+/* ============================================================
+   ACESSIBILIDADE — Fase 4
+   ============================================================ */
+
+/* Foco visível para navegação por teclado (não aparece no mouse) */
+:focus-visible {
+  outline: 3px solid #f5a623;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Remove outline padrão feio mas mantém o :focus-visible acima */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Cards de produto focáveis por teclado */
+.produto-card[tabindex="0"]:focus-visible {
+  outline: 3px solid #f5a623;
+  box-shadow: 0 0 0 4px rgba(245, 166, 35, 0.2);
+}
+
+/* Botões de ação com foco claro */
+.btn-add:focus-visible,
+.btn-fechar:focus-visible,
+.tipo-btn:focus-visible,
+.pagamento-btn:focus-visible,
+.cat-btn:focus-visible {
+  outline: 3px solid #f5a623;
+  outline-offset: 2px;
+}
+
+/* Botão carrinho flutuante com foco */
+.carrinho-btn:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
