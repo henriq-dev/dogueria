@@ -22,11 +22,69 @@
    ============================================================ */
 const LOJA = {
   nome: 'Tubarão Dogueria',
-  telefone: '5569993009408',       // Formato internacional sem espaços/símbolos
+  telefone: '5569993009408',
   horario: {
-    diasAbertos: [1, 2, 3, 4, 5, 6], // 0=Dom, 1=Seg ... 6=Sáb
-    abreHora: 18,                    // Abre às 18h
-    fechaHora: 23,                   // Fecha às 23h
+    diasAbertos: [1, 2, 3, 4, 5, 6],
+    abreHora: 18,
+    fechaHora: 23,
+  },
+  produtos: {
+    dogs: [
+      { id: 'dogs-0', nome: 'Tubarão Tradicional', desc: 'Salsicha, molho, queijo mussarela, milho e batata palha', preco: 6.00 },
+      { id: 'dogs-1', nome: 'Tubarão Duplo', desc: '2 salsichas, molho, queijo mussarela, milho e batata palha', preco: 8.00 },
+      { id: 'dogs-2', nome: 'Tubarão Calabresa', desc: 'Salsicha, molho, queijo mussarela, milho, calabresa e batata palha', preco: 12.00 },
+      { id: 'dogs-3', nome: 'Tubarão Calabresa e Banana', desc: 'Salsicha, molho, queijo mussarela, milho, calabresa, banana e batata palha', preco: 14.00 },
+      { id: 'dogs-4', nome: 'Tubarão Bacon', desc: 'Salsicha, molho, queijo mussarela, milho, bacon e batata palha', preco: 12.00 },
+      { id: 'dogs-5', nome: 'Tubarão Bacon e Banana', desc: 'Salsicha, molho, queijo mussarela, milho, bacon, banana e batata palha', preco: 14.00 },
+      { id: 'dogs-6', nome: 'Tubarão Calabresa, Bacon e Banana', desc: 'Salsicha, molho, queijo mussarela, milho, calabresa, bacon, banana e batata palha', preco: 15.00 },
+      { id: 'dogs-7', nome: 'Tubarão Carne Desfiada', desc: 'Salsicha, molho, queijo mussarela, milho, carne desfiada e batata palha', preco: 12.00 },
+      { id: 'dogs-8', nome: 'Tubarão Carne Desfiada e Banana', desc: 'Salsicha, molho, queijo mussarela, milho, carne desfiada, banana e batata palha', preco: 14.00 },
+      { id: 'dogs-9', nome: 'Tubarão Carne Desfiada, Calabresa e Bacon', desc: 'Salsicha, molho, queijo mussarela, milho, carne desfiada, calabresa, bacon e batata palha', preco: 15.00 },
+      { id: 'dogs-10', nome: 'Tubarão Blaster', prefixo: '⚡', desc: 'Pão 20cm, 1½ salsicha, molho, mussarela, milho, bacon, calabresa, catupiry, banana e batata palha', preco: 18.00, destaque: true },
+      { id: 'dogs-11', nome: 'Tubarão Branco', prefixo: '⚡', desc: 'Pão 20cm, 1½ salsicha, molho, mussarela, milho, bacon, calabresa, catupiry, banana, peito de frango e batata palha', preco: 20.00, destaque: true },
+      { id: 'dogs-12', nome: 'Tubarão Megalodon', prefixo: '🦈', desc: 'Pão 20cm, 1½ salsicha, molho, mussarela, milho, bacon, calabresa, catupiry, banana, carne desfiada e batata palha', preco: 20.00, destaque: true },
+    ],
+    bebidas: [
+      { id: 'beb-0',  nome: 'Coca-Cola 2L', preco: 12.00 },
+      { id: 'beb-1',  nome: 'Fanta Laranja 2L', preco: 12.00 },
+      { id: 'beb-2',  nome: 'Dydyo 2L', preco: 8.00 },
+      { id: 'beb-3',  nome: 'Coca-Cola LS 1L', desc: 'Vidro', preco: 8.00 },
+      { id: 'beb-4',  nome: 'Fanta Laranja LS 1L', desc: 'Vidro', preco: 8.00 },
+      { id: 'beb-5',  nome: 'Coca-Cola PET 1L', preco: 8.00 },
+      { id: 'beb-6',  nome: 'Fanta Laranja PET 1L', preco: 8.00 },
+      { id: 'beb-7',  nome: 'H₂O 400ml', preco: 4.00 },
+      { id: 'beb-8',  nome: 'Água Mineral S/Gás', preco: 3.00 },
+      { id: 'beb-9',  nome: 'Água Mineral C/Gás', preco: 3.50 },
+      { id: 'beb-10', nome: 'Fanta Uva Lata', preco: 5.00 },
+      { id: 'beb-11', nome: 'Sprite Lata', preco: 5.00 },
+      { id: 'beb-12', nome: 'Coca-Cola Lata', preco: 5.00 },
+      { id: 'beb-13', nome: 'Fanta Laranja Lata', preco: 5.00 },
+      { id: 'beb-14', nome: 'Coca Zero Lata', preco: 5.00 },
+      { id: 'beb-15', nome: 'Guaraná Lata', preco: 5.00 },
+      { id: 'beb-16', nome: 'Guaraná Jesus Lata', preco: 5.00 },
+      { id: 'beb-17', nome: 'Água Tônica Lata', preco: 5.00 },
+      { id: 'beb-18', nome: 'Energético', preco: 6.00 },
+    ],
+    sucos: [
+      { id: 'suc-0',  nome: 'Suco de Laranja 500ml', desc: 'Natural · c/ leite R$ 14,00', preco: 12.00 },
+      { id: 'suc-1',  nome: 'Suco de Maracujá 500ml', desc: 'Natural · c/ leite R$ 14,00', preco: 12.00 },
+      { id: 'suc-2',  nome: 'Suco de Goiaba 500ml', desc: 'Natural · c/ leite R$ 10,00', preco: 8.00 },
+      { id: 'suc-3',  nome: 'Suco de Cajá 500ml', desc: 'Natural', preco: 8.00 },
+      { id: 'suc-4',  nome: 'Suco de Cupuaçu 500ml', desc: 'Natural · c/ leite R$ 10,00', preco: 8.00 },
+      { id: 'suc-5',  nome: 'Suco de Abacaxi c/ Hortelã 500ml', desc: 'Natural', preco: 8.00 },
+      { id: 'suc-6',  nome: 'Suco de Laranja Jarra 1L', desc: 'Natural · c/ leite R$ 26,00', preco: 24.00, separador: '— Jarra 1L —' },
+      { id: 'suc-7',  nome: 'Suco de Maracujá Jarra 1L', desc: 'Natural · c/ leite R$ 26,00', preco: 24.00 },
+      { id: 'suc-8',  nome: 'Suco de Goiaba Jarra 1L', desc: 'Natural · c/ leite R$ 18,00', preco: 16.00 },
+      { id: 'suc-9',  nome: 'Suco de Cajá Jarra 1L', desc: 'Natural', preco: 16.00 },
+      { id: 'suc-10', nome: 'Suco de Cupuaçu Jarra 1L', desc: 'Natural · c/ leite R$ 18,00', preco: 16.00 },
+      { id: 'suc-11', nome: 'Suco de Abacaxi c/ Hortelã Jarra 1L', desc: 'Natural', preco: 16.00 },
+    ],
+    adicionais: [
+      { id: 'adic-0', nome: 'Adicional: Cheddar', label: 'Cheddar', preco: 3.00 },
+      { id: 'adic-1', nome: 'Adicional: Catupiry', label: 'Catupiry', preco: 3.00 },
+      { id: 'adic-2', nome: 'Adicional: Salsicha', label: 'Salsicha extra', preco: 3.00 },
+      { id: 'adic-3', nome: 'Adicional: Banana', label: 'Banana', preco: 4.00 },
+    ],
   }
 };
 
@@ -246,8 +304,8 @@ function lojaEstaAberta() {
   const dia = mapasDia[diaStr];
 
   return LOJA.horario.diasAbertos.includes(dia) &&
-    hora >= LOJA.horario.abreHora &&
-    hora < LOJA.horario.fechaHora;
+         hora >= LOJA.horario.abreHora &&
+         hora < LOJA.horario.fechaHora;
 }
 
 /**
@@ -455,10 +513,113 @@ function iniciarObservadorScroll() {
 
 
 /* ============================================================
+   RENDERIZAÇÃO DO CARDÁPIO A PARTIR DOS DADOS (data-driven)
+   Gera o HTML dos produtos dinamicamente a partir de LOJA.produtos.
+   Para mudar preço, nome ou descrição: edite apenas o array acima.
+   ============================================================ */
+
+function precoFmt(p) {
+  return `R$ ${p.toFixed(2).replace('.', ',')}`;
+}
+
+function nomeFmt(p) {
+  return p.prefixo ? `${p.prefixo} ${p.nome}` : p.nome;
+}
+
+function cardDog(p) {
+  const n = p.nome.replace(/'/g, "\\'");
+  return `
+    <div class="produto-card" id="produtoid-${p.id}" onclick="addItem('${n}', ${p.preco})">
+      <div class="produto-info">
+        <div class="produto-nome">${nomeFmt(p)}</div>
+        ${p.desc ? `<div class="produto-desc">${p.desc}</div>` : ''}
+      </div>
+      <div class="produto-preco${p.destaque ? ' destaque' : ''}">${precoFmt(p.preco)}</div>
+      <button class="btn-add" onclick="event.stopPropagation(); addItem('${n}', ${p.preco})">+</button>
+    </div>`;
+}
+
+function cardGrid(p) {
+  const n = p.nome.replace(/'/g, "\\'");
+  return `
+    <div class="produto-card" id="produtoid-${p.id}" onclick="addItem('${n}', ${p.preco})">
+      ${p.label ? `<div class="produto-nome">${p.label}</div>` : `<div class="produto-nome">${p.nome}</div>`}
+      ${p.desc ? `<div class="produto-desc">${p.desc}</div>` : ''}
+      <div class="produto-preco">${precoFmt(p.preco)}</div>
+      <button class="btn-add" onclick="event.stopPropagation(); addItem('${n}', ${p.preco})">+</button>
+    </div>`;
+}
+
+function renderizarCardapio() {
+  // Dogs
+  const secDogs = document.getElementById('dogs');
+  if (secDogs) {
+    secDogs.innerHTML = `<div class="secao-titulo">🌭 HOT DOGS</div>` +
+      LOJA.produtos.dogs.map(cardDog).join('');
+  }
+
+  // Bebidas
+  const secBebidas = document.getElementById('bebidas');
+  if (secBebidas) {
+    secBebidas.innerHTML = `<div class="secao-titulo">🥤 BEBIDAS</div>
+      <div class="bebidas-grid">${LOJA.produtos.bebidas.map(cardGrid).join('')}</div>`;
+  }
+
+  // Sucos
+  const secSucos = document.getElementById('sucos');
+  if (secSucos) {
+    let html = `<div class="secao-titulo">🍹 SUCOS NATURAIS</div>`;
+    LOJA.produtos.sucos.forEach(p => {
+      if (p.separador) html += `<div class="separador-interno">${p.separador}</div>`;
+      html += cardDog(p);
+    });
+    secSucos.innerHTML = html;
+  }
+
+  // Adicionais
+  const secAdic = document.getElementById('adicionais');
+  if (secAdic) {
+    secAdic.innerHTML = `<div class="secao-titulo">➕ ADICIONAIS</div>
+      <div class="bebidas-grid">${LOJA.produtos.adicionais.map(cardGrid).join('')}</div>`;
+  }
+
+  // Menu lateral — atualiza também
+  renderizarMenuLateral();
+}
+
+function renderizarMenuLateral() {
+  const body = document.querySelector('.menu-lateral-body');
+  if (!body) return;
+
+  const dogs = LOJA.produtos.dogs.map(p =>
+    `<div class="menu-item${p.destaque ? ' destaque-item' : ''}" onclick="irProduto('produtoid-${p.id}')">${nomeFmt(p)} <span>${precoFmt(p.preco)}</span></div>`
+  ).join('');
+
+  const adicionais = LOJA.produtos.adicionais.map(p =>
+    `<div class="menu-item" onclick="irProduto('produtoid-${p.id}')">${p.label || p.nome} <span>${precoFmt(p.preco)}</span></div>`
+  ).join('');
+
+  body.innerHTML = `
+    <div class="menu-cat-titulo">🌭 Hot Dogs</div>
+    ${dogs}
+    <div class="menu-cat-titulo">🥤 Bebidas</div>
+    <div class="menu-item" onclick="fecharMenuLateral(); scrollToSection('bebidas', document.querySelector('.cat-btn:nth-child(2)'))">Ver todas as bebidas →</div>
+    <div class="menu-cat-titulo">🍹 Sucos Naturais</div>
+    <div class="menu-item" onclick="fecharMenuLateral(); scrollToSection('sucos', document.querySelector('.cat-btn:nth-child(3)'))">Ver todos os sucos →</div>
+    <div class="menu-cat-titulo">➕ Adicionais</div>
+    ${adicionais}
+  `;
+}
+
+
+/* ============================================================
    9. INICIALIZAÇÃO
    Executado quando o DOM estiver totalmente carregado.
    ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
+
+  // Renderiza o cardápio a partir dos dados centralizados
+  renderizarCardapio();
 
   // Recupera o carrinho salvo no localStorage (se existir)
   const carrinhoSalvo = localStorage.getItem('tubarao_carrinho');

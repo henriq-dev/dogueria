@@ -282,7 +282,7 @@ main {
   max-width: 600px;
   margin: 0 auto;
   padding: 16px 12px 100px;
-  box-shadow: inset 0px 1px 20px 0px rgb(0, 0, 0);
+   box-shadow: inset 0px 1px 20px 0px rgb(0, 0, 0);
 }
 
 .secao {
@@ -1376,29 +1376,133 @@ main {
    Para trocar tema: edite só este bloco.
    ------------------------------------------------ */
 
-footer {
-  font-family: var(--fonte-condensada);
-  box-shadow: inset 0px 1px 20px 0px rgb(0, 0, 0);
-  height: 50px;
-  padding: 5px;
-  margin-top: 0.3px;
-  margin-bottom: px;
-  background-color: #0000005e;
-  color: #ffffff;
-  text-align: center;
-}
+   footer {
+    font-family: var(--fonte-condensada);
+        box-shadow: inset 0px 1px 20px 0px rgb(0, 0, 0);
+    height: 50px;
+    padding: 5px;
+    margin-top: 0.3px;
+    margin-bottom: px;
+    background-color: #0000005e;
+    color: #ffffff;
+    text-align: center;
+   }
 
-/* Link normal */
+   /* Link normal */
 footer a {
-
-  color: rgb(255, 255, 255);
+  background-color: #0312367c;
+  color: rgb(102, 102, 172);
   text-decoration: none;
-  transition: all 0.6s ease;
-  /* Suaviza a transição */
+  transition: all 0.6s ease; /* Suaviza a transição */
 }
 
 /* Link ao passar o mouse (Hover) */
 footer a:hover {
   border-radius: 2px;
-  color: rgb(255, 238, 0);
+  background-color: #000000;
+  color: rgb(255, 230, 0);
+}
+
+/* ============================================================
+   FASE 3 — Estilos movidos do <style> inline do index.html
+   ============================================================ */
+
+/* Nome do cliente */
+.campo-nome input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1.5px solid #ddd;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: 'Barlow', sans-serif;
+  margin-bottom: 10px;
+}
+
+.campo-nome input:focus {
+  outline: none;
+  border-color: #0d2d7a;
+}
+
+/* Observações */
+#inputObservacoes {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1.5px solid #ddd;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-family: 'Barlow', sans-serif;
+  resize: none;
+  margin-bottom: 10px;
+}
+
+#inputObservacoes:focus {
+  outline: none;
+  border-color: #0d2d7a;
+}
+
+/* Endereço */
+.campo-bairro {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.campo-bairro input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#inputCep {
+  max-width: 160px;
+}
+
+/* Pagamento */
+.pagamento-titulo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #555;
+  margin: 12px 0 6px;
+}
+
+.pagamento-opcoes {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.pagamento-btn {
+  flex: 1 1 calc(50% - 6px);
+  padding: 9px 6px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  background: #f8f8f8;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all .15s;
+  color: #333;
+  text-align: center;
+}
+
+.pagamento-btn.active {
+  border-color: #0d2d7a;
+  background: #e8edf8;
+  color: #0d2d7a;
+}
+
+#campoTroco input {
+  margin-bottom: 8px;
+  padding: 9px 12px;
+  border: 1.5px solid #ddd;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  width: 100%;
+  box-sizing: border-box;
 }
