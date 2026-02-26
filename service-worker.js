@@ -3,16 +3,18 @@
    Cache dos arquivos principais para funcionamento offline.
    ============================================================ */
 
-const CACHE_NAME = 'tubarao-v2';
+const CACHE_NAME = 'tubarao-v3';
 
 // Arquivos que serão salvos no cache na primeira visita
 const ARQUIVOS_CACHE = [
   './',
   './index.html',
+  './offline.html',
   './estilo/estilo.css',
   './js/app.js',
   './img/logozap.jpeg',
-  './img/favicon/favi3.png',
+  './img/favicon/icon-192.png',
+  './img/favicon/icon-512.png',
   'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap'
 ];
 
@@ -59,8 +61,8 @@ self.addEventListener('fetch', (event) => {
         // Sem internet: serve do cache
         return caches.match(event.request).then((respostaCache) => {
           if (respostaCache) return respostaCache;
-          // Se não tiver no cache, retorna o index.html (fallback)
-          return caches.match('./index.html');
+          // Se não tiver no cache, serve a página offline personalizada
+          return caches.match('./offline.html');
         });
       })
   );
