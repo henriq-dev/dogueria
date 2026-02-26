@@ -44,3 +44,4 @@ Se entrar painel admin com Supabase — **R$ 2.000 a R$ 3.500**, porque aí vira
 ---
 
 O caminho natural seria entregar o que está pronto agora, e quando o cliente pedir "quero editar o cardápio sozinho" — aí você volta com uma proposta maior. 🦈
+
