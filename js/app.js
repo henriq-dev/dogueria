@@ -327,7 +327,7 @@ function enviarWhatsApp() {
   carrinho.forEach(item => {
     const sub = item.preco * item.qtd;
     total += sub;
-    linhas += `- ${item.qtd}x ${item.nome} — R$ ${sub.toFixed(2).replace('.', ',')}\n`;
+    linhas += `- ${item.qtd}x ${item.nome} | R$ ${sub.toFixed(2).replace('.', ',')}\n`;
   });
 
   const tiposLabel    = { entrega: 'Entrega', retirada: 'Retirada no local', local: 'Comer no local' };
