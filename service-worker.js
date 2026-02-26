@@ -3,7 +3,7 @@
    Cache dos arquivos principais para funcionamento offline.
    ============================================================ */
 
-const CACHE_NAME = 'tubarao-v1';
+const CACHE_NAME = 'tubarao-v2';
 
 // Arquivos que serão salvos no cache na primeira visita
 const ARQUIVOS_CACHE = [
@@ -13,7 +13,7 @@ const ARQUIVOS_CACHE = [
   './js/app.js',
   './img/logozap.jpeg',
   './img/favicon/favi3.png',
-  'https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap'
+  'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap'
 ];
 
 // Instalação: salva os arquivos no cache
