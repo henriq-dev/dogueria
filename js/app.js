@@ -327,14 +327,14 @@ function enviarWhatsApp() {
   carrinho.forEach(item => {
     const sub = item.preco * item.qtd;
     total += sub;
-    linhas += `- ${item.qtd}x ${item.nome} | R$ ${sub.toFixed(2).replace('.', ',')}\n`;
+    linhas += `${item.qtd}x ${item.nome} — R$ ${sub.toFixed(2).replace('.', ',')}\n`;
   });
 
   const tiposLabel    = { entrega: 'Entrega', retirada: 'Retirada no local', local: 'Comer no local' };
   const pagLabel      = { pix: 'Pix', dinheiro: 'Dinheiro', debito: 'Cartão Débito', credito: 'Cartão Crédito' };
 
-  let msg = `*${LOJA.nome} — Novo Pedido*\n\n`;
-  msg += `👤 *Cliente:* ${nome}\n\n`;
+  let msg = `*${LOJA.nome} - Novo Pedido*\n\n`;
+  msg += `*Cliente:* ${nome}\n\n`;
   msg += linhas;
   msg += `\n*Total: R$ ${total.toFixed(2).replace('.', ',')}*`;
   msg += `\n\nTipo: ${tiposLabel[tipoPedido] || tipoPedido}`;
@@ -346,7 +346,7 @@ function enviarWhatsApp() {
     msg += `\nEndereço: ${[rua, bairro, cep ? 'CEP ' + cep : ''].filter(Boolean).join(', ') || '(não informado)'}`;
   }
 
-  msg += `\n\n💳 Pagamento: ${pagLabel[pagamentoSelecionado] || pagamentoSelecionado}`;
+  msg += `\n\n*Pagamento:* ${pagLabel[pagamentoSelecionado] || pagamentoSelecionado}`;
 
   const troco = document.getElementById('inputTroco')?.value;
   if (pagamentoSelecionado === 'dinheiro' && troco) {
@@ -354,7 +354,7 @@ function enviarWhatsApp() {
   }
 
   const obs = document.getElementById('inputObservacoes')?.value?.trim() || '';
-  if (obs) msg += `\n\n📝 *Observações:* ${obs}`;
+  if (obs) msg += `\n\n*Observações:* ${obs}`;
 
   window.open(`https://wa.me/${LOJA.telefone}?text=${encodeURIComponent(msg)}`, '_blank');
 
