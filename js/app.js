@@ -4,19 +4,18 @@
 
    ÍNDICE:
    1.  Dados da Loja
-   2.  Integração com Painel Admin
-   3.  Estado Global
-   4.  Utilitários (fuso horário, formatação)
-   5.  Carrinho (add, remove, atualizar, persistir)
-   6.  Modal do Carrinho (abrir, fechar, renderizar)
-   7.  Formulário do Pedido (tipo, pagamento)
-   8.  Envio via WhatsApp
-   9.  Status Aberto / Fechado
-   10. Renderização do Cardápio (data-driven)
-   11. Menu Lateral de Produtos
-   12. Modal Sobre a Loja
-   13. Navegação por Categorias
-   14. Inicialização (DOMContentLoaded)
+   2.  Estado Global
+   3.  Utilitários (fuso horário, formatação)
+   4.  Carrinho (add, remove, atualizar, persistir)
+   5.  Modal do Carrinho (abrir, fechar, renderizar)
+   6.  Formulário do Pedido (tipo, pagamento)
+   7.  Envio via WhatsApp
+   8.  Status Aberto / Fechado
+   9.  Renderização do Cardápio (data-driven)
+   10. Menu Lateral de Produtos
+   11. Modal Sobre a Loja
+   12. Navegação por Categorias
+   13. Inicialização (DOMContentLoaded)
    ============================================================ */
 
 
@@ -96,26 +95,7 @@ const LOJA = {
 };
 
 
-/* ============================================================
-   2. INTEGRAÇÃO COM PAINEL ADMIN
-   Se o dono editou via admin.html, os dados ficam salvos em
-   localStorage['tubarao_admin'] e sobrescrevem LOJA aqui.
-   ============================================================ */
-(function aplicarDadosAdmin() {
-  try {
-    const salvo = localStorage.getItem('tubarao_admin');
-    if (!salvo) return;
-    const admin = JSON.parse(salvo);
-    if (admin.produtos) {
-      Object.keys(admin.produtos).forEach(cat => {
-        if (LOJA.produtos[cat]) LOJA.produtos[cat] = admin.produtos[cat];
-      });
-    }
-    if (admin.horario) Object.assign(LOJA.horario, admin.horario);
-  } catch (e) {
-    console.warn('[Admin] Erro ao carregar dados:', e);
-  }
-})();
+
 
 
 /* ============================================================

@@ -89,45 +89,7 @@
   --sombra-float: 0 6px 24px rgba(0, 0, 0, .35);
 }
 
-/* ============================================================
-   DARK MODE — ativado automaticamente pelo sistema do usuário
-   ============================================================ */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-page: #0a0f1e;
-    --bg-card: #1a2235;
-    --bg-modal: #141c2e;
-    --bg-modal-footer: #141c2e;
-    --bg-input: #1e2a40;
-    --bg-tipo-btn: #1e2a40;
-    --bg-pagamento-btn: #1e2a40;
-    --bg-qtd-ctrl: #1e2a40;
-    --bg-menu-lateral: #141c2e;
-    --bg-menu-item-hover: #1e2a40;
 
-    --texto-primario: #f0f4ff;
-    --texto-secundario: #c0ccee;
-    --texto-terciario: #8899bb;
-    --texto-placeholder: #6677aa;
-    --texto-menu-item: #d0dcf0;
-    --texto-pagamento: #c0ccee;
-
-    --borda-suave: #2a3550;
-    --borda-input: #2a3550;
-    --borda-tipo-btn: #2a3550;
-    --borda-item-carrinho: #2a3550;
-    --borda-sobre-bloco: #2a3550;
-    --borda-menu-item: #2a3550;
-
-    --handle-cor: #3a4a66;
-    --btn-fechar-cor: #6677aa;
-    --carrinho-vazio-cor: #6677aa;
-    --separador-cor: rgba(255,255,255,.3);
-
-    --sombra: 0 4px 20px rgba(0, 0, 0, .5);
-    --sombra-hover: 0 6px 24px rgba(0, 0, 0, .6);
-  }
-}
 
 
 /* ------------------------------------------------
@@ -1624,66 +1586,20 @@ footer a:hover {
   outline-offset: 3px;
 }
 
-
 /* ============================================================
-   PROMOÇÕES — Fase 5
-   Badge exibido no nome do produto quando há preço promocional
-   ativo. Gerado por _badgePromo() em app.js.
+   FASE 5 — Badge de promoção no cardápio
    ============================================================ */
-
 .badge-promo-card {
   display: inline-block;
-  margin-left: 7px;
-
-  /* Posicionamento vertical alinhado ao texto */
-  vertical-align: middle;
-  position: relative;
-  top: -1px;
-
-  /* Visual */
-  background: #dc2626;
-  color: #ffffff;
+  font-size: 10px;
+  background: #fff3e0;
+  color: #ea580c;
+  padding: 2px 7px;
+  border-radius: 50px;
   font-family: var(--fonte-condensada);
   font-weight: 700;
-  font-size: 11px;
-  letter-spacing: .4px;
-  text-transform: uppercase;
-  white-space: nowrap;
-
-  /* Pílula com destaque */
-  padding: 2px 7px;
-  border-radius: var(--radius-pill);
-  border: 1.5px solid rgba(255, 255, 255, .25);
-  box-shadow: 0 1px 4px rgba(220, 38, 38, .45);
-
-  /* Animação sutil de pulso para chamar atenção */
-  animation: promoPulse 2.4s ease-in-out infinite;
-}
-
-@keyframes promoPulse {
-  0%,  100% { opacity: 1;   box-shadow: 0 1px 4px rgba(220, 38, 38, .45); }
-  50%        { opacity: .82; box-shadow: 0 2px 10px rgba(220, 38, 38, .75); }
-}
-
-/* Dark mode — fundo ligeiramente mais vivo para contrastar */
-@media (prefers-color-scheme: dark) {
-  .badge-promo-card {
-    background: #ef4444;
-    border-color: rgba(255, 255, 255, .15);
-    box-shadow: 0 1px 6px rgba(239, 68, 68, .55);
-  }
-
-  @keyframes promoPulse {
-    0%,  100% { opacity: 1;   box-shadow: 0 1px 6px rgba(239, 68, 68, .55); }
-    50%        { opacity: .82; box-shadow: 0 2px 14px rgba(239, 68, 68, .85); }
-  }
-}
-
-/* Telas muito pequenas — badge menor para não quebrar linha */
-@media (max-width: 360px) {
-  .badge-promo-card {
-    font-size: 10px;
-    padding: 1px 5px;
-    margin-left: 5px;
-  }
+  margin-left: 6px;
+  vertical-align: middle;
+  text-transform: none;
+  letter-spacing: 0;
 }
