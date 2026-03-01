@@ -53,7 +53,7 @@
   --bg-menu-lateral: #ffffff;
   --bg-menu-item-hover: #f0f4ff;
 
-  --texto-primario: #111111;
+  --texto-primario: #000000;
   --texto-secundario: #444444;
   --texto-terciario: #666666;
   --texto-placeholder: #999999;
@@ -117,6 +117,7 @@ header {
   padding: 20px 16px 0;
   position: relative;
   overflow: hidden;
+  color: #ffffff;
 }
 
 /* Brilho decorativo em amarelo no fundo */
