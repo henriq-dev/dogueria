@@ -1,0 +1,102 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  color: #222;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.header {
+  background: #1e3a8a;
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.empresa-nome {
+  font-size: 32px;
+}
+
+.empresa-slogan {
+  margin-top: 8px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  background: #0f172a;
+  padding: 10px;
+}
+
+.nav button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.secao {
+  margin-top: 30px;
+}
+
+.produto {
+  background: white;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.produto button {
+  background: #1e3a8a;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.carrinho-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #facc15;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 12px 12px 0 0;
+}

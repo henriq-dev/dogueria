@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ALTERAR AQUI: Nome da empresa -->
+  <title>Nome da Empresa – Cardápio Digital</title>
+
+  <!-- ALTERAR AQUI: Descrição institucional -->
+  <meta name="description" content="Cardápio digital moderno e responsivo." />
+
+  <link rel="stylesheet" href="estilo/etilo.css" />
+</head>
+
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header class="header">
+    <div class="container">
+
+      <!-- ALTERAR AQUI: Nome da empresa -->
+      <h1 class="empresa-nome">Nome da Empresa</h1>
+
+      <!-- ALTERAR AQUI: Slogan -->
+      <p class="empresa-slogan">Qualidade e sabor em cada pedido.</p>
+
+      <div class="empresa-info">
+        <!-- ALTERAR AQUI: Horário -->
+        <span>🕐 Seg–Sáb: 18h às 23h</span>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================= NAVEGAÇÃO ================= -->
+  <nav class="nav">
+    <button onclick="scrollToSection('categoria1')">Categoria 1</button>
+    <button onclick="scrollToSection('categoria2')">Categoria 2</button>
+    <button onclick="scrollToSection('categoria3')">Categoria 3</button>
+  </nav>
+
+  <!-- ================= CARDÁPIO ================= -->
+  <main class="container">
+
+    <!-- ALTERAR AQUI: Categorias -->
+    <section id="categoria1" class="secao">
+      <h2>Categoria 1</h2>
+      <div class="produtos" id="lista-categoria1"></div>
+    </section>
+
+    <section id="categoria2" class="secao">
+      <h2>Categoria 2</h2>
+      <div class="produtos" id="lista-categoria2"></div>
+    </section>
+
+    <section id="categoria3" class="secao">
+      <h2>Categoria 3</h2>
+      <div class="produtos" id="lista-categoria3"></div>
+    </section>
+
+  </main>
+
+  <!-- ================= CARRINHO ================= -->
+  <button class="carrinho-btn" onclick="abrirCarrinho()">
+    🛒 Ver Pedido (<span id="carrinhoQtd">0</span>)
+  </button>
+
+  <div class="overlay" id="overlay" onclick="fecharCarrinho()"></div>
+
+  <div class="modal" id="modal">
+    <h3>Meu Pedido</h3>
+    <div id="modalConteudo"></div>
+    <button onclick="fecharCarrinho()">Fechar</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
