@@ -1,3 +1,5 @@
+executar teste basico <a href="#">click no link</a>
+
 # 🦈 Tubarão Dogueria — Cardápio Digital
 
 Cardápio digital progressivo (PWA) da **Tubarão Dogueria**, desenvolvido para funcionar em celular, tablet e desktop. Os clientes montam o pedido direto no navegador e enviam via WhatsApp com um toque.
