@@ -1,7 +1,9 @@
-executar teste basico <a href="https://henriq-dev.github.io/dogueria/teste/">click no link</a>
-executar teste feito como teste, vinculado vercel <a href="https://dogueria.vercel.app/">click no link</a
+<h1>Executar teste esqueleto basico <a href="https://henriq-dev.github.io/dogueria/teste/">click no link</a>
+    <br> <hr>
+<h1>Executar teste feito, cardapio no vercel <a href="https://dogueria.vercel.app/">click no link</a></h1>
+    <br> <hr>
 
-# 🦈 Tubarão Dogueria — Cardápio Digital
+
 
 Cardápio digital progressivo (PWA) da **Tubarão Dogueria**, desenvolvido para funcionar em celular, tablet e desktop. Os clientes montam o pedido direto no navegador e enviam via WhatsApp com um toque.
 
