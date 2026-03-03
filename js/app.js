@@ -31,8 +31,8 @@ const LOJA = {
   telefone: '5569993009408',
   horario: {
     diasAbertos: [1, 2, 3, 4, 5, 6], // 0=Dom ... 6=Sáb
-    abreHora: ,
-    fechaHora: ,
+    abreHora: 18,
+    fechaHora: 23,
   },
   produtos: {
     dogs: [
