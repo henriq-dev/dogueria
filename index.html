@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Deploy em andamento</title>
+
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:#020617;
+color:#22c55e;
+font-family:"JetBrains Mono", monospace;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+}
+
+/* partículas */
+
+canvas{
+position:absolute;
+top:0;
+left:0;
+z-index:0;
+}
+
+/* terminal */
+
+.terminal{
+
+position:relative;
+z-index:1;
+
+width:90%;
+max-width:700px;
+
+background:#020617;
+
+border:1px solid #1e293b;
+border-radius:8px;
+
+box-shadow:0 0 40px rgba(0,0,0,.7);
+
+}
+
+.header{
+
+background:#0f172a;
+padding:10px 15px;
+display:flex;
+align-items:center;
+gap:8px;
+
+}
+
+.dot{
+width:12px;
+height:12px;
+border-radius:50%;
+}
+
+.red{background:#ef4444}
+.yellow{background:#f59e0b}
+.green{background:#22c55e}
+
+.title{
+margin-left:10px;
+color:#94a3b8;
+font-size:13px;
+}
+
+/* logs */
+
+.logs{
+
+padding:20px;
+height:350px;
+overflow:hidden;
+font-size:14px;
+
+}
+
+.log{
+margin-bottom:6px;
+white-space:nowrap;
+}
+
+/* status */
+
+.status{
+
+padding:15px 20px;
+border-top:1px solid #1e293b;
+display:flex;
+justify-content:space-between;
+font-size:14px;
+
+}
+
+.api{
+color:#22c55e;
+}
+
+.offline{
+color:#ef4444;
+}
+
+/* botão */
+
+.btn{
+
+display:block;
+margin:20px;
+text-align:center;
+background:#25D366;
+color:white;
+padding:12px;
+border-radius:6px;
+text-decoration:none;
+font-weight:600;
+
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="terminal">
+
+<div class="header">
+
+<div class="dot red"></div>
+<div class="dot yellow"></div>
+<div class="dot green"></div>
+
+<div class="title">deploy-terminal</div>
+
+</div>
+
+<div class="logs" id="logs"></div>
+
+<div class="status">
+
+<div>API STATUS: <span id="apiStatus" class="api">ONLINE</span></div>
+
+<div>DEPLOY RUNNING...</div>
+
+</div>
+
+<a class="btn"
+href="https://wa.me/5569981011321"
+target="_blank"
+rel="noopener noreferrer">
+
+Suporte • Henriq-dev
+
+</a>
+
+</div>
+
+<script>
+
+/* logs simulados */
+
+const logLines=[
+
+"connecting to deployment server...",
+"initializing environment...",
+"checking dependencies...",
+"node modules installed ✔",
+"compiling assets...",
+"building project...",
+"optimizing images...",
+"generating static pages...",
+"running tests...",
+"deploying to production...",
+"checking API routes...",
+"API connected ✔",
+"verifying database...",
+"database online ✔",
+"deploy successful"
+
+]
+
+const logsContainer=document.getElementById("logs")
+
+let index=0
+
+function addLog(){
+
+if(index>=logLines.length) return
+
+const line=document.createElement("div")
+line.className="log"
+line.textContent="> "+logLines[index]
+
+logsContainer.appendChild(line)
+
+logsContainer.scrollTop=logsContainer.scrollHeight
+
+index++
+
+}
+
+setInterval(addLog,900)
+
+/* API status */
+
+function checkAPI(){
+
+if(navigator.onLine){
+
+document.getElementById("apiStatus").textContent="ONLINE"
+document.getElementById("apiStatus").className="api"
+
+}else{
+
+document.getElementById("apiStatus").textContent="OFFLINE"
+document.getElementById("apiStatus").className="offline"
+
+}
+
+}
+
+window.addEventListener("online",checkAPI)
+window.addEventListener("offline",checkAPI)
+
+checkAPI()
+
+/* partículas */
+
+const canvas=document.getElementById("particles")
+const ctx=canvas.getContext("2d")
+
+canvas.width=window.innerWidth
+canvas.height=window.innerHeight
+
+let particles=[]
+
+for(let i=0;i<80;i++){
+
+particles.push({
+
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*2,
+speed:Math.random()*0.6
+
+})
+
+}
+
+function animate(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height)
+
+ctx.fillStyle="#22c55e"
+
+particles.forEach(p=>{
+
+ctx.beginPath()
+ctx.arc(p.x,p.y,p.size,0,Math.PI*2)
+ctx.fill()
+
+p.y+=p.speed
+
+if(p.y>canvas.height) p.y=0
+
+})
+
+requestAnimationFrame(animate)
+
+}
+
+animate()
+
+</script>
+
+</body>
+</html>
