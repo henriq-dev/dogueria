@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sistema temporariamente indisponível</title>
+<title>Sistema indisponível</title>
 
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
@@ -28,8 +28,6 @@ justify-content:center;
 overflow:hidden;
 }
 
-/* partículas */
-
 canvas{
 position:absolute;
 top:0;
@@ -37,20 +35,16 @@ left:0;
 z-index:0;
 }
 
-/* terminal */
-
 .terminal{
 position:relative;
 z-index:1;
 width:90%;
-max-width:720px;
+max-width:700px;
 background:#020617;
 border:1px solid #1e293b;
 border-radius:8px;
 box-shadow:0 0 40px rgba(0,0,0,.7);
 }
-
-/* header */
 
 .header{
 background:#0f172a;
@@ -76,17 +70,15 @@ color:#94a3b8;
 font-size:13px;
 }
 
-/* mensagem */
-
 .message{
-padding:25px;
+padding:30px;
 text-align:center;
 border-bottom:1px solid #1e293b;
 }
 
 .message h1{
 font-size:20px;
-color:#f59e0b;
+color:#ef4444;
 margin-bottom:10px;
 }
 
@@ -94,22 +86,11 @@ margin-bottom:10px;
 color:#94a3b8;
 font-size:14px;
 line-height:1.6;
-margin-bottom:10px;
 }
-
-/* contador */
-
-.timer{
-font-size:18px;
-margin-top:10px;
-color:#22c55e;
-}
-
-/* logs */
 
 .logs{
 padding:20px;
-height:220px;
+height:240px;
 overflow:hidden;
 font-size:14px;
 }
@@ -118,8 +99,6 @@ font-size:14px;
 margin-bottom:6px;
 white-space:nowrap;
 }
-
-/* status */
 
 .status{
 padding:15px 20px;
@@ -133,8 +112,6 @@ font-size:14px;
 color:#ef4444;
 }
 
-/* botão */
-
 .btn{
 display:block;
 margin:20px;
@@ -146,7 +123,7 @@ border-radius:6px;
 text-decoration:none;
 font-weight:600;
 box-shadow:0 0 10px rgba(37,211,102,.6);
-transition:.3s;
+transition:0.3s;
 }
 
 .btn:hover{
@@ -154,12 +131,10 @@ transform:scale(1.05);
 box-shadow:0 0 25px rgba(37,211,102,.9);
 }
 
-/* mobile */
-
 @media(max-width:480px){
 
 .logs{
-height:160px;
+height:200px;
 font-size:12px;
 }
 
@@ -184,26 +159,20 @@ font-size:18px;
 <div class="dot yellow"></div>
 <div class="dot green"></div>
 
-<div class="title">system-maintenance.log</div>
+<div class="title">system-status.log</div>
 
 </div>
 
 <div class="message">
 
-<h1>⚠ Sistema temporariamente indisponível</h1>
+<h1>Sistema indisponível</h1>
 
 <p>
-Estamos realizando uma manutenção técnica para melhorar a estabilidade do sistema.
+O sistema está temporariamente indisponível.
 </p>
 
 <p>
-Previsão de retorno:
-</p>
-
-<div class="timer" id="timer">calculando...</div>
-
-<p>
-Caso precise de suporte, entre em contato com o desenvolvedor.
+Entre em contato com o desenvolvedor para mais informações.
 </p>
 
 </div>
@@ -212,9 +181,9 @@ Caso precise de suporte, entre em contato com o desenvolvedor.
 
 <div class="status">
 
-<div>SISTEMA: <span class="offline">INDISPONÍVEL</span></div>
+<div>SERVIÇO: <span class="offline">OFFLINE</span></div>
 
-<div>MANUTENÇÃO EM ANDAMENTO</div>
+<div>AGUARDANDO SUPORTE</div>
 
 </div>
 
@@ -223,7 +192,7 @@ href="https://wa.me/5569981011321"
 target="_blank"
 rel="noopener noreferrer">
 
-Entrar em contato • Henriq-dev
+Entrar em contato com o desenvolvedor
 
 </a>
 
@@ -231,51 +200,14 @@ Entrar em contato • Henriq-dev
 
 <script>
 
-/* contador regressivo */
-
-const returnDate = new Date("2026-03-10T20:00:00").getTime()
-
-function updateTimer(){
-
-const now = new Date().getTime()
-
-const distance = returnDate - now
-
-if(distance <= 0){
-
-document.getElementById("timer").innerText="Sistema voltando..."
-
-return
-
-}
-
-const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60))
-const minutes = Math.floor((distance%(1000*60*60))/(1000*60))
-const seconds = Math.floor((distance%(1000*60))/1000)
-
-document.getElementById("timer").innerText =
-`${hours.toString().padStart(2,"0")}h ${minutes.toString().padStart(2,"0")}m ${seconds.toString().padStart(2,"0")}s`
-
-}
-
-setInterval(updateTimer,1000)
-
-/* logs */
-
 const logLines=[
 
-"system maintenance started...",
-"placing application in maintenance mode...",
-"disconnecting active sessions...",
-"checking server dependencies...",
-"updating backend modules...",
-"checking database integrity...",
-"optimizing tables...",
-"clearing application cache...",
-"deploying improvements...",
-"restarting services...",
-"validating system health...",
-"maintenance in progress..."
+"initializing system check...",
+"verifying server status...",
+"connection failure detected...",
+"attempting reconnection...",
+"system unavailable...",
+"waiting for developer response..."
 
 ]
 
