@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -5,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Deploy em andamento</title>
+<title>Sistema temporariamente indisponível</title>
 
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
@@ -40,30 +41,24 @@ z-index:0;
 /* terminal */
 
 .terminal{
-
 position:relative;
 z-index:1;
-
 width:90%;
 max-width:700px;
-
 background:#020617;
-
 border:1px solid #1e293b;
 border-radius:8px;
-
 box-shadow:0 0 40px rgba(0,0,0,.7);
-
 }
 
-.header{
+/* header */
 
+.header{
 background:#0f172a;
 padding:10px 15px;
 display:flex;
 align-items:center;
 gap:8px;
-
 }
 
 .dot{
@@ -82,15 +77,33 @@ color:#94a3b8;
 font-size:13px;
 }
 
+/* mensagem principal */
+
+.message{
+padding:25px;
+text-align:center;
+border-bottom:1px solid #1e293b;
+}
+
+.message h1{
+font-size:20px;
+color:#f59e0b;
+margin-bottom:10px;
+}
+
+.message p{
+color:#94a3b8;
+font-size:14px;
+line-height:1.6;
+}
+
 /* logs */
 
 .logs{
-
 padding:20px;
-height:350px;
+height:260px;
 overflow:hidden;
 font-size:14px;
-
 }
 
 .log{
@@ -101,17 +114,11 @@ white-space:nowrap;
 /* status */
 
 .status{
-
 padding:15px 20px;
 border-top:1px solid #1e293b;
 display:flex;
 justify-content:space-between;
 font-size:14px;
-
-}
-
-.api{
-color:#22c55e;
 }
 
 .offline{
@@ -121,7 +128,6 @@ color:#ef4444;
 /* botão */
 
 .btn{
-
 display:block;
 margin:20px;
 text-align:center;
@@ -131,6 +137,27 @@ padding:12px;
 border-radius:6px;
 text-decoration:none;
 font-weight:600;
+box-shadow:0 0 10px rgba(37,211,102,.6);
+transition:0.3s;
+}
+
+.btn:hover{
+transform:scale(1.05);
+box-shadow:0 0 25px rgba(37,211,102,.9);
+}
+
+/* mobile */
+
+@media(max-width:480px){
+
+.logs{
+height:200px;
+font-size:12px;
+}
+
+.message h1{
+font-size:18px;
+}
 
 }
 
@@ -149,7 +176,21 @@ font-weight:600;
 <div class="dot yellow"></div>
 <div class="dot green"></div>
 
-<div class="title">deploy-terminal</div>
+<div class="title">system-maintenance.log</div>
+
+</div>
+
+<div class="message">
+
+<h1>⚠ Sistema temporariamente indisponível</h1>
+
+<p>
+Estamos realizando uma manutenção técnica para melhorar a estabilidade do sistema.
+</p>
+
+<p>
+O serviço será normalizado em breve.
+</p>
 
 </div>
 
@@ -157,9 +198,9 @@ font-weight:600;
 
 <div class="status">
 
-<div>API STATUS: <span id="apiStatus" class="api">ONLINE</span></div>
+<div>SISTEMA: <span class="offline">INDISPONÍVEL</span></div>
 
-<div>DEPLOY RUNNING...</div>
+<div>MANUTENÇÃO EM ANDAMENTO</div>
 
 </div>
 
@@ -180,21 +221,18 @@ Suporte • Henriq-dev
 
 const logLines=[
 
-"connecting to deployment server...",
-"initializing environment...",
-"checking dependencies...",
-"node modules installed ✔",
-"compiling assets...",
-"building project...",
-"optimizing images...",
-"generating static pages...",
-"running tests...",
-"deploying to production...",
-"checking API routes...",
-"API connected ✔",
-"verifying database...",
-"database online ✔",
-"deploy successful"
+"system maintenance started...",
+"placing application in maintenance mode...",
+"disconnecting active sessions...",
+"checking server dependencies...",
+"updating backend modules...",
+"checking database integrity...",
+"optimizing tables...",
+"clearing application cache...",
+"deploying improvements...",
+"restarting services...",
+"validating system health...",
+"maintenance in progress..."
 
 ]
 
@@ -220,29 +258,6 @@ index++
 
 setInterval(addLog,900)
 
-/* API status */
-
-function checkAPI(){
-
-if(navigator.onLine){
-
-document.getElementById("apiStatus").textContent="ONLINE"
-document.getElementById("apiStatus").className="api"
-
-}else{
-
-document.getElementById("apiStatus").textContent="OFFLINE"
-document.getElementById("apiStatus").className="offline"
-
-}
-
-}
-
-window.addEventListener("online",checkAPI)
-window.addEventListener("offline",checkAPI)
-
-checkAPI()
-
 /* partículas */
 
 const canvas=document.getElementById("particles")
@@ -256,12 +271,10 @@ let particles=[]
 for(let i=0;i<80;i++){
 
 particles.push({
-
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
 size:Math.random()*2,
 speed:Math.random()*0.6
-
 })
 
 }
