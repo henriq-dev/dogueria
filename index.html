@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Sistema indisponível</title>
+<title>Sistema indisponível | Suporte do desenvolvedor</title>
+
+<meta name="description" content="O sistema está temporariamente indisponível. Entre em contato com o desenvolvedor para suporte.">
+
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="canonical" href="https://seusite.com/manutencao">
+
+<meta property="og:title" content="Sistema indisponível">
+<meta property="og:description" content="O sistema está temporariamente indisponível. Entre em contato com o desenvolvedor.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
@@ -18,46 +32,56 @@ box-sizing:border-box;
 }
 
 body{
+
 background:#020617;
 color:#22c55e;
+
 font-family:"JetBrains Mono", monospace;
-height:100vh;
+
+min-height:100vh;
+
 display:flex;
 align-items:center;
 justify-content:center;
-overflow:hidden;
+
+padding:20px;
+
 }
 
-canvas{
-position:absolute;
-top:0;
-left:0;
-z-index:0;
-}
+main{
 
-.terminal{
-position:relative;
-z-index:1;
-width:90%;
 max-width:700px;
-background:#020617;
+width:100%;
+
 border:1px solid #1e293b;
-border-radius:8px;
+border-radius:10px;
+
+background:#020617;
+
 box-shadow:0 0 40px rgba(0,0,0,.7);
+
 }
 
-.header{
-background:#0f172a;
-padding:10px 15px;
+header{
+
 display:flex;
 align-items:center;
 gap:8px;
+
+background:#0f172a;
+
+padding:12px 16px;
+
+border-bottom:1px solid #1e293b;
+
 }
 
 .dot{
+
 width:12px;
 height:12px;
 border-radius:50%;
+
 }
 
 .red{background:#ef4444}
@@ -65,105 +89,146 @@ border-radius:50%;
 .green{background:#22c55e}
 
 .title{
-margin-left:10px;
+
 color:#94a3b8;
 font-size:13px;
+
+margin-left:8px;
+
 }
 
-.message{
+.section-message{
+
 padding:30px;
 text-align:center;
-border-bottom:1px solid #1e293b;
+
 }
 
-.message h1{
-font-size:20px;
+.section-message h1{
+
+font-size:22px;
 color:#ef4444;
+
 margin-bottom:10px;
+
 }
 
-.message p{
-color:#94a3b8;
-font-size:14px;
+.section-message p{
+
+color:#cbd5f5;
+font-size:15px;
 line-height:1.6;
+
 }
 
 .logs{
+
+border-top:1px solid #1e293b;
+
 padding:20px;
-height:240px;
+
+height:200px;
+
 overflow:hidden;
+
 font-size:14px;
+
 }
 
 .log{
+
 margin-bottom:6px;
-white-space:nowrap;
+
 }
 
 .status{
-padding:15px 20px;
+
 border-top:1px solid #1e293b;
+
+padding:15px 20px;
+
 display:flex;
 justify-content:space-between;
+
 font-size:14px;
+
 }
 
 .offline{
+
 color:#ef4444;
+
 }
 
 .btn{
+
 display:block;
+
 margin:20px;
+
 text-align:center;
+
+padding:14px;
+
 background:#25D366;
+
 color:white;
-padding:12px;
+
 border-radius:6px;
+
 text-decoration:none;
+
 font-weight:600;
-box-shadow:0 0 10px rgba(37,211,102,.6);
-transition:0.3s;
+
+transition:0.2s;
+
 }
 
 .btn:hover{
-transform:scale(1.05);
-box-shadow:0 0 25px rgba(37,211,102,.9);
+
+transform:scale(1.03);
+
 }
 
-@media(max-width:480px){
+.btn:focus{
 
-.logs{
-height:200px;
+outline:3px solid #fff;
+
+outline-offset:2px;
+
+}
+
+footer{
+
+text-align:center;
+
 font-size:12px;
-}
 
-.message h1{
-font-size:18px;
-}
+color:#64748b;
+
+padding:10px;
 
 }
 
 </style>
+
 </head>
 
 <body>
 
-<canvas id="particles"></canvas>
+<main>
 
-<div class="terminal">
-
-<div class="header">
+<header>
 
 <div class="dot red"></div>
 <div class="dot yellow"></div>
 <div class="dot green"></div>
 
-<div class="title">system-status.log</div>
+<span class="title">system-status.log</span>
 
-</div>
+</header>
 
-<div class="message">
+<section class="section-message" role="alert">
 
 <h1>Sistema indisponível</h1>
 
@@ -172,111 +237,76 @@ O sistema está temporariamente indisponível.
 </p>
 
 <p>
-Entre em contato com o desenvolvedor para mais informações.
+Entre em contato com o desenvolvedor para obter suporte ou mais informações.
 </p>
 
-</div>
+</section>
 
-<div class="logs" id="logs"></div>
+<section class="logs" id="logs" aria-live="polite">
 
-<div class="status">
+</section>
+
+<section class="status">
 
 <div>SERVIÇO: <span class="offline">OFFLINE</span></div>
 
 <div>AGUARDANDO SUPORTE</div>
 
-</div>
+</section>
 
-<a class="btn"
+<a
+class="btn"
 href="https://wa.me/5569981011321"
 target="_blank"
-rel="noopener noreferrer">
+rel="noopener"
+aria-label="Entrar em contato com o desenvolvedor pelo WhatsApp"
+>
 
 Entrar em contato com o desenvolvedor
 
 </a>
 
-</div>
+<footer>
+
+© Desenvolvedor Henriq-dev
+
+</footer>
+
+</main>
 
 <script>
 
-const logLines=[
+const logs=[
 
-"initializing system check...",
-"verifying server status...",
+"initializing server diagnostics...",
+"checking backend services...",
 "connection failure detected...",
-"attempting reconnection...",
-"system unavailable...",
-"waiting for developer response..."
+"system temporarily unavailable...",
+"awaiting developer intervention..."
 
 ]
 
-const logsContainer=document.getElementById("logs")
+const container=document.getElementById("logs")
 
-let index=0
+let i=0
 
 function addLog(){
 
-if(index>=logLines.length) return
+if(i>=logs.length)return
 
 const line=document.createElement("div")
+
 line.className="log"
-line.textContent="> "+logLines[index]
 
-logsContainer.appendChild(line)
+line.textContent="> "+logs[i]
 
-logsContainer.scrollTop=logsContainer.scrollHeight
+container.appendChild(line)
 
-index++
-
-}
-
-setInterval(addLog,900)
-
-/* partículas */
-
-const canvas=document.getElementById("particles")
-const ctx=canvas.getContext("2d")
-
-canvas.width=window.innerWidth
-canvas.height=window.innerHeight
-
-let particles=[]
-
-for(let i=0;i<80;i++){
-
-particles.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-size:Math.random()*2,
-speed:Math.random()*0.6
-})
+i++
 
 }
 
-function animate(){
-
-ctx.clearRect(0,0,canvas.width,canvas.height)
-
-ctx.fillStyle="#22c55e"
-
-particles.forEach(p=>{
-
-ctx.beginPath()
-ctx.arc(p.x,p.y,p.size,0,Math.PI*2)
-ctx.fill()
-
-p.y+=p.speed
-
-if(p.y>canvas.height) p.y=0
-
-})
-
-requestAnimationFrame(animate)
-
-}
-
-animate()
+setInterval(addLog,1000)
 
 </script>
 
